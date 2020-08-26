@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>第4章 表达式 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="基础 运算符作用于运算对象(变量或者字面值)即为表达式（复合表达式） 函数调用是一种特殊的运算符 对象被作为右值时，用的是对象的值(内容)，用作左值时，用的是对象的身份(在内存中的位置) decltype( * p) 推断出来的是int &amp;类型,* p是一个左值，表示一个对象，因此是引用类型 优先级和结合律和求职顺序决定了复合表达式 当求值顺序未定义时，当复合表达式指向并修改了同一个对象时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第4章 表达式">
+<meta property="og:url" content="http://yoursite.com/2020/02/15/%E7%AC%AC4%E7%AB%A0%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="基础 运算符作用于运算对象(变量或者字面值)即为表达式（复合表达式） 函数调用是一种特殊的运算符 对象被作为右值时，用的是对象的值(内容)，用作左值时，用的是对象的身份(在内存中的位置) decltype( * p) 推断出来的是int &amp;类型,* p是一个左值，表示一个对象，因此是引用类型 优先级和结合律和求职顺序决定了复合表达式 当求值顺序未定义时，当复合表达式指向并修改了同一个对象时">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-15T10:22:14.704Z">
+<meta property="article:modified_time" content="2020-02-26T13:54:31.327Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-第4章 表达式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/15/%E7%AC%AC4%E7%AB%A0%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-date">
+  <time datetime="2020-02-15T10:22:14.704Z" itemprop="datePublished">2020-02-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第4章 表达式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ol>
+<li>运算符作用于运算对象(变量或者字面值)即为表达式（复合表达式）</li>
+<li>函数调用是一种特殊的运算符</li>
+<li>对象被作为右值时，用的是对象的值(内容)，用作左值时，用的是对象的身份(在内存中的位置)</li>
+<li>decltype( * p) 推断出来的是int &amp;类型,* p是一个左值，表示一个对象，因此是引用类型</li>
+<li>优先级和结合律和求职顺序决定了复合表达式</li>
+<li>当求值顺序未定义时，当复合表达式指向并修改了同一个对象时会产生不可预知的行为 </li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">" "</span>&lt;&lt;++i&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>算数运算符运算的结果都是右值(有的运算符运算的结果不一定是右值)</li>
+<li>算数运算符能提升运算对象，使得表达式的类型统一</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> b = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">bool</span> b2 = -b;<span class="comment">//-b提升为int类型-1，又被转化为bool类型true</span></span><br></pre></td></tr></table></figure>
+
+<ol start="9">
+<li>c++规定(-m/n) = (m/-n) = -(m/n) , (-m)%n = -(m%n), m%(-n) = m%n</li>
+<li>赋值运算满足右结合律</li>
+<li>退化表示对象变成首元素地址（发生在数组中），提升表示一种类型的转换，表达式中可能会出现（算数运算或者逻辑运算包括关系运算），退化和提升没有啥关系</li>
+<li>逻辑运算符和关系运算符返回的结果是布尔类型</li>
+<li>while（i==ture）会出错，true会提升为int的1，只有当i为1时才返回true（关系运算符的结果是bool类型）</li>
+<li>赋值运算符不会产生提升，反而会进行类型转化 ，int a ； a = 3.13；3.13会转化为int类型 的</li>
+<li>有的迭代器不支持算数运算，自增自减可以，建议使用前置版本的自增自减运算</li>
+<li>后置版本的自增自减是先进行自增自减，然后返回复制的之前的值</li>
+<li>不要在一个表达式中多次出现会被改变的运算对象</li>
+<li>后置自增自减运算符的优先级低于 .运算符(a.size())的优先级，后者高于*（解引用）运算符</li>
+<li>ci是迭代器*ci++很常用，先算ci++返回ci再解引用</li>
+</ol>
+<hr>
+<h2 id="条件运算符"><a href="#条件运算符" class="headerlink" title="条件运算符"></a>条件运算符</h2><ol>
+<li><code>? a:b</code>    返回结果既可以当作左值也可以当作右值（于a和b是左值还是右值有关）</li>
+<li>条件表达式可以嵌套，满足右结合律，应该从右向左读</li>
+<li>条件运算符的优先级非常非常低，所以应该将其用括号括起来</li>
+</ol>
+<hr>
+<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><ol>
+<li>关于符号位如何处理没有明确的规定，所以建议仅仅将位运算符用于处理无符号类型</li>
+<li>左移右移时，短的整型(比如char等)可能会提升为int</li>
+</ol>
+<hr>
+<h2 id="sizeof运算符"><a href="#sizeof运算符" class="headerlink" title="sizeof运算符"></a>sizeof运算符</h2><ol>
+<li>他可以返回表达式结果类型的大小</li>
+<li>sizeof右侧的元素其实不会被计算</li>
+<li>sizeof是运算符 右结合律，从右往左看(不加括号也行)</li>
+</ol>
+<hr>
+<h2 id="逗号运算符"><a href="#逗号运算符" class="headerlink" title="逗号运算符"></a>逗号运算符</h2><ol>
+<li>对于逗号运算符来说，首先对左侧的表达式求值，然后丢弃；真正的结果是右侧表达式的值</li>
+<li>一般在for循环中使用</li>
+</ol>
+<hr>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><ol>
+<li><p>隐式转换自动发生，一般朝不损失精度的方向转换</p>
+</li>
+<li><p>初始化和赋值时，右侧对象转换为左侧对象的类型</p>
+</li>
+<li><p>算数转换：当无符号类型和有符号类型相加时，谁的类型大转化为谁的（从int转化为unsigned可能会发生错误)</p>
+</li>
+<li><p>表达式中比int类型小的一般会先转化为int类型</p>
+</li>
+<li><p>cast-name<type>(expression) 为命名式的强制转换</p>
+</li>
+<li><p>static_cast是普通的类型转换，当损失精度时不报错</p>
+</li>
+<li><p>const_cast只能改变对象的的底层const (指针指向常量)，不能改变对象的类型</p>
+</li>
+</ol>
+<ol>
+<li><pre><code class="c++"><span class="keyword">char</span> a = <span class="string">'a'</span>;
+<span class="keyword">const</span> <span class="keyword">char</span> *pc = &amp;a;
+<span class="keyword">char</span> *p = <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt; (pc);<span class="comment">//pc是底层const，转变为char *，但是通过p修改a的做法是未定义的</span>
+*p = <span class="string">'b'</span>;
+<span class="comment">//*pc = 'c'; 不合法无法通过底层const修改a</span>
+<span class="built_in">cout</span>&lt;&lt; a &lt;&lt;<span class="built_in">endl</span>;
+a = <span class="string">'c'</span>;
+<span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;
+</code></pre>
+<ol start="8">
+<li>reinterpret_const在位的层面上改变对象的类型</li>
+<li>除了底层const的指针，可以把任何类型的指针的值赋给void *类型的指针</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/02/15/%E7%AC%AC4%E7%AB%A0%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ckebbher600006z2zgv9fe1ci" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/02/26/%E7%AC%AC5%E7%AB%A0%20%E8%AF%AD%E5%8F%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          第5章 语句
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/02/04/%E7%AC%AC3%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">第3章 字符串和向量和数组</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/26/%E7%AC%AC6%E7%AB%A0%20%E5%87%BD%E6%95%B0%20/">第6章 函数 </a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/26/%E7%AC%AC5%E7%AB%A0%20%E8%AF%AD%E5%8F%A5/">第5章 语句</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/15/%E7%AC%AC4%E7%AB%A0%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/">第4章 表达式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/04/%E7%AC%AC3%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/">第3章 字符串和向量和数组</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/12/%E7%AC%AC2%E7%AB%A0%20auto%E5%92%8Cdecltype%E6%80%BB%E7%BB%93/">第2章 auto和decltype总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

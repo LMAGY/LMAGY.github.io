@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>第2章 const总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="const 总结  const对象必须初始化  默认状态下，const对象仅在文件内有效（无论是定义 还是声明，都应该在const前面加上extern，必须都要加上，少一个都不行；但是，对于普通的对象来说，只需要在使用的地方加上extern 就可以了，定义的地方并不需要）  非常量引用不能引用常量对象；常量引用能引用非常量对象（只是不能通过该引用改变这个非常量的值，但非常量对象的值是可以改变的）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第2章 const总结">
+<meta property="og:url" content="http://yoursite.com/2020/01/12/%E7%AC%AC2%E7%AB%A0%20const%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="const 总结  const对象必须初始化  默认状态下，const对象仅在文件内有效（无论是定义 还是声明，都应该在const前面加上extern，必须都要加上，少一个都不行；但是，对于普通的对象来说，只需要在使用的地方加上extern 就可以了，定义的地方并不需要）  非常量引用不能引用常量对象；常量引用能引用非常量对象（只是不能通过该引用改变这个非常量的值，但非常量对象的值是可以改变的）">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-12T10:11:43.921Z">
+<meta property="article:modified_time" content="2020-02-04T11:53:47.019Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-第2章 const总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/12/%E7%AC%AC2%E7%AB%A0%20const%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2020-01-12T10:11:43.921Z" itemprop="datePublished">2020-01-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第2章 const总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="const-总结"><a href="#const-总结" class="headerlink" title="const 总结"></a>const 总结</h2><hr>
+<ol>
+<li><p>const对象必须初始化</p>
+</li>
+<li><p>默认状态下，const对象仅在文件内有效（无论是定义 还是声明，都应该在const前面加上extern，必须都要加上，少一个都不行；但是，对于普通的对象来说，只需要在使用的地方加上extern 就可以了，定义的地方并不需要）</p>
+</li>
+<li><p>非常量引用不能引用常量对象；常量引用能引用非常量对象（只是不能通过该引用改变这个非常量的值，但非常量对象的值是可以改变的）</p>
+</li>
+<li><p>非pointer to const不能指向常量；pointer to const能指向非常量对象（只是不能通过指针改变。。。自以为是认为自己指向了常量</p>
+</li>
+<li><p>const pointer 表示指针本身是常量</p>
+</li>
+<li><pre><code class="c++"><span class="comment">// C4227.cpp</span>
+<span class="comment">// compile with: /W1 /c</span>
+<span class="keyword">int</span> j = <span class="number">0</span>;
+<span class="keyword">int</span> &amp;<span class="keyword">const</span> i = j;   <span class="comment">// C4227</span>
+<span class="comment">//这个写法会给一个warning，但不会会被丢弃</span>
+&lt;!--￼<span class="number">0</span>--&gt;</code></pre>
+</li>
+<li><p>底层const的限制就不能忽略。拷贝时，拷入和拷出的对象必须具有相同的底层const资格，或者两个对象的数据类型必须能够转换。非常量可以转为常量，反之不行，具体来说就是 int * 类型能转化为const int * 类型，而const int * 不能转化为int  *类型；int *可作为左值赋给cosnt int *，反之不行。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = p3;<span class="comment">//错误 ，p3包含底层const的含义，p没有</span></span><br><span class="line">p2 = &amp;i; <span class="comment">//右边int *  能转变为左边的const int *</span></span><br><span class="line"><span class="keyword">int</span> &amp;r = ci; <span class="comment">//普通引用不能绑定到const变量上</span></span><br><span class="line">  <span class="keyword">const</span>  <span class="keyword">int</span> &amp;r2 = i; <span class="comment">//const引用能绑定到普通变量上</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>总结：对于指针来说顶层const可以忽略（拷贝时），对于引用来说，只存在底层const，对于const的对象也必须用const的引用<code>const &amp; ri</code></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/12/%E7%AC%AC2%E7%AB%A0%20const%E6%80%BB%E7%BB%93/" data-id="ckebbhere00036z2zgqnb7fzw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/12/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          零碎知识
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/26/%E7%AC%AC6%E7%AB%A0%20%E5%87%BD%E6%95%B0%20/">第6章 函数 </a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/26/%E7%AC%AC5%E7%AB%A0%20%E8%AF%AD%E5%8F%A5/">第5章 语句</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/15/%E7%AC%AC4%E7%AB%A0%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/">第4章 表达式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/04/%E7%AC%AC3%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/">第3章 字符串和向量和数组</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/12/%E7%AC%AC2%E7%AB%A0%20auto%E5%92%8Cdecltype%E6%80%BB%E7%BB%93/">第2章 auto和decltype总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>第3章 字符串和向量和数组 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="命名空间  使用方法：using namespace::name ; 例如using std::cin 每个名字都需要独立的using声明 头文件中一般不用命名空间  标准库类型 string  拷贝初始化（用“&#x3D;”），直接初始化不用“&#x3D;”  直接初始化适用范围更广（毕竟面向对象）    os&lt;&lt;s 写入输出流    is&gt;&gt;s 读取字符流   getline(is,s)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第3章 字符串和向量和数组">
+<meta property="og:url" content="http://yoursite.com/2020/02/04/%E7%AC%AC3%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="命名空间  使用方法：using namespace::name ; 例如using std::cin 每个名字都需要独立的using声明 头文件中一般不用命名空间  标准库类型 string  拷贝初始化（用“&#x3D;”），直接初始化不用“&#x3D;”  直接初始化适用范围更广（毕竟面向对象）    os&lt;&lt;s 写入输出流    is&gt;&gt;s 读取字符流   getline(is,s)">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-04T11:52:55.053Z">
+<meta property="article:modified_time" content="2020-02-26T13:56:26.130Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-第3章 字符串和向量和数组" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/04/%E7%AC%AC3%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/" class="article-date">
+  <time datetime="2020-02-04T11:52:55.053Z" itemprop="datePublished">2020-02-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第3章 字符串和向量和数组
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h2><hr>
+<ol>
+<li>使用方法：using namespace::name ; 例如using std::cin</li>
+<li>每个名字都需要独立的using声明</li>
+<li>头文件中一般不用命名空间</li>
+</ol>
+<h2 id="标准库类型-string"><a href="#标准库类型-string" class="headerlink" title="标准库类型 string"></a>标准库类型 string</h2><hr>
+<ol>
+<li><p>拷贝初始化（用“=”），直接初始化不用“=”</p>
+</li>
+<li><p>直接初始化适用范围更广（毕竟面向对象）</p>
+<table>
+<thead>
+<tr>
+<th>os&lt;&lt;s</th>
+<th>写入输出流</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>is&gt;&gt;s</td>
+<td>读取字符流</td>
+</tr>
+<tr>
+<td>getline(is,s)</td>
+<td>从is中读取一行赋给s</td>
+</tr>
+<tr>
+<td>s.empty（）</td>
+<td>s为空返回true，否则返回false</td>
+</tr>
+<tr>
+<td>s.size（）</td>
+<td>返回s中字符的个数</td>
+</tr>
+<tr>
+<td>s[n]</td>
+<td>检索第n个字符</td>
+</tr>
+<tr>
+<td>s1 + s2</td>
+<td>返回连接后的结果</td>
+</tr>
+<tr>
+<td>s1 = s2</td>
+<td>用s2的副本代替s1中原来的字符</td>
+</tr>
+<tr>
+<td>s1 == s2</td>
+<td>判断是否相等</td>
+</tr>
+<tr>
+<td>s1 != s2</td>
+<td>等性判断，大小写敏感</td>
+</tr>
+<tr>
+<td>&lt;, &lt;=, &gt;, &gt;=</td>
+<td>字典序排序</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>读写string对象 ，cin只能读取非空白符，遇到空白结束</p>
+</li>
+<li><p>读取未知数量的string对象（commad + D是文件结束符）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">string</span> <span class="keyword">word</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;<span class="keyword">word</span>)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="keyword">word</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用getline读取一整行（可以保留空白符）</p>
+<p>getline(cin,line)从输入读取到line中，直到遇到换行符为止，换行符会被丢弃。 </p>
+<p>getline会返回一个流对象，可以一直输入。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> <span class="built_in">line</span>;</span><br><span class="line">    <span class="comment">//每次读入一整行，知道达到文件末尾</span></span><br><span class="line">    <span class="keyword">while</span>(getline(<span class="built_in">cin</span>,<span class="built_in">line</span>))</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt; <span class="built_in">line</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>string的empty和size操作</p>
+<p>string.empty( )会返回一个布尔值，string.size( )会返回字符串的长度</p>
+<p>这个长度值是一个string::size_type的类型(这是一个无符号的值)，所以千万不要和int混用。   </p>
+</li>
+<li><p>字符串字面值不能直接相加</p>
+</li>
+<li><p>字符产不能直接相加不能直接相加，string对象可以加字面值，也可以加string对象。切记字符串字面值不是string对象</p>
+</li>
+<li><p>字典序，越往后越大</p>
+</li>
+</ol>
+<h3 id="处理string对象中的字符"><a href="#处理string对象中的字符" class="headerlink" title="处理string对象中的字符"></a>处理string对象中的字符</h3><ol>
+<li><table>
+<thead>
+<tr>
+<th>代码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>isalnum(c)</td>
+<td>当c是字母或数字时为真</td>
+</tr>
+<tr>
+<td>isalpha(c)</td>
+<td>当c是字母时为真</td>
+</tr>
+<tr>
+<td>iscntrl(c)</td>
+<td>当c是控制时为真</td>
+</tr>
+<tr>
+<td>isdigit(c)</td>
+<td>当c是数字时为真</td>
+</tr>
+<tr>
+<td>isgraph(c)</td>
+<td>当c不是空格但可打印时为真</td>
+</tr>
+<tr>
+<td>islower(c)</td>
+<td>当c是小写字母时为真</td>
+</tr>
+<tr>
+<td>isprint(c)</td>
+<td>当c是可打印字符时为真（空格或具有可视形式）</td>
+</tr>
+<tr>
+<td>ispunct(c)</td>
+<td>当c是标点符号时为真(即c不是控制字符，数字，字母，可打印空白中的一种)</td>
+</tr>
+<tr>
+<td>isspace(c)</td>
+<td>当c是空白时为真(即c是空格，横向制表符，纵向制表符，回车符，换行符，进纸符)</td>
+</tr>
+<tr>
+<td>isupper(c)</td>
+<td>当c是大写字母时为真</td>
+</tr>
+<tr>
+<td>isxdigit(c)</td>
+<td>当c是十六进制字母时为真</td>
+</tr>
+<tr>
+<td>tolower(c)                 toupper(c)</td>
+<td>如果c是大写字母，输出对应的小写字母，否则原样输出c ; 如果c是小写字母，输出对应的大写字母，否则原样输出c。</td>
+</tr>
+</tbody></table>
+<p>一般来说，C++应使用cname而非name.h的头文件。  </p>
+</li>
+</ol>
+<h3 id="处理每个字符使用基于范围的for语句"><a href="#处理每个字符使用基于范围的for语句" class="headerlink" title="处理每个字符使用基于范围的for语句"></a>处理每个字符使用基于范围的for语句</h3><p>for (auto i : strings)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"hello world !!!!"</span>)</span></span>;</span><br><span class="line">    <span class="keyword">decltype</span>(s.<span class="built_in">size</span>())  pun_cnt = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// 注意返回值是 string::size_type类型</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> c : s)</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">ispunct</span>(c))</span><br><span class="line">            ++pun_cnt;</span><br><span class="line">        </span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;pun_cnt</span><br><span class="line">        &lt;&lt;<span class="string">"punctuation characters in "</span>&lt;&lt;s&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用范围for语句改变字符串中的字符"><a href="#使用范围for语句改变字符串中的字符" class="headerlink" title="使用范围for语句改变字符串中的字符"></a>使用范围for语句改变字符串中的字符</h3><ol>
+<li>关键是要用引用，for (auto&amp; c : strings)</li>
+</ol>
+<h3 id="只处理一部分字符"><a href="#只处理一部分字符" class="headerlink" title="只处理一部分字符"></a>只处理一部分字符</h3><ol>
+<li>使用下标或者使用迭代器，下标运算符[ ]接受的下标是size_type类型,返回值是对该位置字符的引用。s[0]到s[s.size()-1]</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"some string"</span>)</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(!s.empty())</span><br><span class="line">        s[<span class="number">0</span>] = <span class="built_in">toupper</span>(s[<span class="number">0</span>]);<span class="comment">//下标是引用</span></span><br><span class="line">  	<span class="keyword">for</span>(<span class="keyword">decltype</span>(s.<span class="built_in">size</span>())  index = <span class="number">0</span>; index != s.<span class="built_in">size</span>()&amp;&amp; !<span class="built_in">isspace</span>(s[index]); ++index)</span><br><span class="line">        s[index] = <span class="built_in">toupper</span>(s[index]);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;s&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>c++不要求检测下标是否合法，使用超出范围的下标就会产生不可预知的结果</li>
+</ol>
+<hr>
+<h2 id="标准库类型vector-容器"><a href="#标准库类型vector-容器" class="headerlink" title="标准库类型vector(容器)"></a>标准库类型vector(容器)</h2><hr>
+<ol>
+<li><p>vector表示对象的集合，其中所有对象的类型都相同，也被称为容器(container),vector其实是一个类模版。</p>
+</li>
+<li><p>模版本身不是类或函数，模版是为为编译器生成类或函数编写的一份说明。编译器根据模版创建类或函数的过程称为实例化，当使用模版时，需要指明编译器把类或函数实例化何种类型。对于类模版来说，我们通过提供额外的信息来指定模版到底实例化成什么样的类，需要提供哪些信息由模版决定。提供信息在模版后跟一对尖括号，在括号内加入信息。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec; <span class="comment">//ivec保存int类型的对象</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; file;</span><br></pre></td></tr></table></figure>
+
+<p>ivec 保存int类型的对象，类型是vector<int></p>
+</li>
+<li><p>( )是默认初识化的方法</p>
+</li>
+<li><p>{ }是列表初始化的方法，当其无意义时会考虑使用默认初识化的方法（即退化为（）</p>
+</li>
+</ol>
+<h3 id="向vector对象中添加元素"><a href="#向vector对象中添加元素" class="headerlink" title="向vector对象中添加元素"></a>向vector对象中添加元素</h3><ol>
+<li>使用vector的push_back可以向vector中加入元素</li>
+<li>通常做法是定义一个空的vector，再用push_back( )往里面放，这样反而比给出vector的大小再往里面放的效率高（动态大于静态）</li>
+<li>其他操作 .size( ) .empty( ) .push_back( ) 等</li>
+<li>注意：不能使用下标给未定义的位置赋值或进行访问等操作，否则会造成缓冲区溢出这种类似的错误(buffer overflow)</li>
+</ol>
+<hr>
+<hr>
+<h2 id="迭代器-就像一个指针"><a href="#迭代器-就像一个指针" class="headerlink" title="迭代器(就像一个指针)"></a>迭代器(就像一个指针)</h2><hr>
+<ol>
+<li><p>迭代器是一种通用机制来访问容器中的对象；所有标准库容器都能用迭代器访问，但是只有少部分支持下标访问。</p>
+</li>
+<li><p>类似指针类型，迭代器提供了对对象的间接访问。就迭代器而言，其对象是容器中的元素或者string对象中的字符。使用迭代器可以访问某个元素，迭代器也能从一个元素移动到另外一个元素。迭代器有有效和无效之分，和指针相似。有效的迭代器或者指向某个元素，或者指向容器中尾元素的下一位置；其他所有情况都属于无效</p>
+</li>
+<li></li>
+<li><pre><code class="c++">    <span class="function"><span class="built_in">string</span> <span class="title">v</span><span class="params">(<span class="string">"hello,world!!!"</span>)</span></span>;
+    <span class="keyword">auto</span> b = v.<span class="built_in">begin</span>();<span class="comment">//b是一个迭代器，指向v的第一个元素</span>
+    <span class="keyword">auto</span> e = v.<span class="built_in">end</span>();<span class="comment">//e是一个迭代器，指向v的尾元素的下一个位置，被称为尾迭代器/尾后迭代器</span>
+<span class="comment">//若是容器为空则两者都返回尾后迭代器</span>
+&lt;!--￼<span class="number">5</span>--&gt;</code></pre>
+</li>
+<li><p>数组下标的类型是size_t</p>
+</li>
+<li><p>数组名有时候表示的表示指针指向首地址，有时候表示数组对象本身</p>
+</li>
+<li><p>尾后指针类型尾后迭代器，int * p = &amp;a[n];</p>
+</li>
+<li><p>数组类型不是类类型,所以没有.begin( )和.end( )这种成员函数,用begin(a),begin(b)这种方式作用在上面</p>
+</li>
+<li><p>标准库类型的下标是size_type( )类型，无符号数；数组下标是有符号的数</p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> *p = <span class="built_in">begin</span>(ia) + <span class="number">3</span>;<span class="comment">//begin()得到迭代器，指针就是迭代器</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;p[<span class="number">-2</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="重点在于：数组名不一定总是指针，大部分时间表示数组对象，当其作为指针时可以当作是一种退化，退化成类型迭代器的东西（但他是常量，只能赋值给其他指针，begin和end函数也能完成这种功能）"><a href="#重点在于：数组名不一定总是指针，大部分时间表示数组对象，当其作为指针时可以当作是一种退化，退化成类型迭代器的东西（但他是常量，只能赋值给其他指针，begin和end函数也能完成这种功能）" class="headerlink" title="重点在于：数组名不一定总是指针，大部分时间表示数组对象，当其作为指针时可以当作是一种退化，退化成类型迭代器的东西（但他是常量，只能赋值给其他指针，begin和end函数也能完成这种功能）"></a>重点在于：数组名不一定总是指针，大部分时间表示数组对象，当其作为指针时可以当作是一种退化，退化成类型迭代器的东西（但他是常量，只能赋值给其他指针，begin和end函数也能完成这种功能）</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> b = ia; b&lt;<span class="built_in">end</span>(ia);b++)</span><br><span class="line">    *b = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> a :ia)</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"hello world"</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> i = s.<span class="built_in">begin</span>();i !=s.<span class="built_in">end</span>();i++)</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;*i&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> s[] = <span class="string">"hello world"</span>;</span><br><span class="line"> <span class="built_in">string</span> a = s<span class="comment">// s表示这个字符串数组对象，而不能用s[]，这和c语言不同</span></span><br><span class="line"> <span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>新旧风格代码混用时 ：不能使用string类型初始化即char * s = string类型对象是不合法的，char *s = string.c_str( )才可以</li>
+<li>不能用标准库类型初始化数组，但是可以用数组初始化vector等容器</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> int_arr[] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>&#125;;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">subvec</span><span class="params">(int_arr,<span class="built_in">end</span>(int_arr))</span></span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> i: subvec)</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<h2 id="多维度数组"><a href="#多维度数组" class="headerlink" title="多维度数组"></a>多维度数组</h2><ol>
+<li>所谓多维数组就是数组的数组；</li>
+<li>使用range for时除了最内层，其他控制变量都应该是引用类型</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> row: a)<span class="comment">//row作为数组名会退化，auto会变成int * 类型，而不是命为row的数组对象</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> col :row)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;col&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125; ;</span><br><span class="line">   <span class="keyword">int</span> (*p)[<span class="number">4</span>] = a;<span class="comment">//a表示的是第一个元素的地址，发生退化现象</span></span><br><span class="line">   p = &amp;a[<span class="number">2</span>];<span class="comment">//这里a[2]表示的是一个内层数组，没有退化，只有加&amp;时才表示该数组的地址</span></span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;a[<span class="number">2</span>]&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//这里发生了退化，表示首元素的地址</span></span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;&amp;a[<span class="number">2</span>]&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//这里没有退化，取地址符后才得到首元素的地址</span></span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;*a&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//这里的*a表示的是退化了的a[2],即是a[2]的首地址，**a才是元素的值</span></span><br><span class="line">   <span class="comment">//注意当使用cout&lt;&lt; a[2]&lt;&lt;endl;这种方式时会退化</span></span><br><span class="line">#一维下也是如此</span><br><span class="line">   <span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">   <span class="keyword">int</span> (*p)[<span class="number">5</span>] = &amp;a;<span class="comment">//此处a未发生退化</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[<span class="number">3</span>][<span class="number">4</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> (row)[<span class="number">4</span>] :ia)<span class="comment">//这是错误的，解析ia会发生退化变成指针而非数组对象，必须加引用才行</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> b : row)</span><br><span class="line">      <span class="built_in">cout</span>&lt;&lt; b &lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">习题总结</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ia[<span class="number">3</span>][<span class="number">4</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> (&amp;row)[<span class="number">4</span>] :ia)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> b : row)</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;b&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> i= <span class="number">0</span>;i&lt;<span class="number">3</span>;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">size_t</span> j = <span class="number">0</span>;j&lt;<span class="number">4</span>;j++)</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;ia[i][j]&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> (*p)[<span class="number">4</span>] = ia; p != ia + <span class="number">3</span>;p++)</span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> *q = <span class="built_in">begin</span>((*p)); q!= <span class="built_in">end</span>((*p));q ++)</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;*q&lt;&lt;<span class="string">" "</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">using</span> int_4 = <span class="keyword">int</span> [<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(int_4 *p = ia;p != ia+<span class="number">3</span>;p++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> *q = *p;q !=(*p)+<span class="number">4</span>;q++)</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;*q&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> p = ia;p != ia+<span class="number">3</span>;p++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> q = (*p);q != (*p)+<span class="number">4</span>;q++)</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;*q&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>数组是一种类似字面值的东西，可以复制给string vector等对象（反之则不行）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/02/04/%E7%AC%AC3%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/" data-id="ckebbherb00016z2z1q0kgxfh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/02/15/%E7%AC%AC4%E7%AB%A0%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          第4章 表达式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/12/%E7%AC%AC2%E7%AB%A0%20auto%E5%92%8Cdecltype%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">第2章 auto和decltype总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/26/%E7%AC%AC6%E7%AB%A0%20%E5%87%BD%E6%95%B0%20/">第6章 函数 </a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/26/%E7%AC%AC5%E7%AB%A0%20%E8%AF%AD%E5%8F%A5/">第5章 语句</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/15/%E7%AC%AC4%E7%AB%A0%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/">第4章 表达式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/04/%E7%AC%AC3%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/">第3章 字符串和向量和数组</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/12/%E7%AC%AC2%E7%AB%A0%20auto%E5%92%8Cdecltype%E6%80%BB%E7%BB%93/">第2章 auto和decltype总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

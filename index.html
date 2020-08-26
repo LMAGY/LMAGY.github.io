@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-第6章 函数 " class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/26/%E7%AC%AC6%E7%AB%A0%20%E5%87%BD%E6%95%B0%20/" class="article-date">
+  <time datetime="2020-08-26T10:58:29.353Z" itemprop="datePublished">2020-08-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/26/%E7%AC%AC6%E7%AB%A0%20%E5%87%BD%E6%95%B0%20/">第6章 函数 </a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="函数基础"><a href="#函数基础" class="headerlink" title="函数基础"></a>函数基础</h3><hr>
+<ol>
+<li><p>函数可以使用引用型形式参数，可以避免拷贝，同时可以返回额外信息，这叫做引用调用；直接传值的调用叫做传值调用</p>
+</li>
+<li><p>形参的初始化方式和和变量的初始化方式完全相同，需要注意顶层和底层const等性质</p>
+</li>
+<li><p>我们要尽量使用常量引用，因为可以将非常量作为实参传入形参，但是不能将常量作为实参传入形参定义为常量引用的函数，所以如果不需要在函数中改变该实参，则一律使用常量引用</p>
+</li>
+<li><p>数组形参不能直接用拷贝传入，传入的是指向数组首元素的指针；但是我们可以将形参写成类似数组的形式</p>
+</li>
+<li><pre><code class="c++"><span class="function"><span class="keyword">void</span> <span class="title">print1</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> *a)</span></span>
+<span class="function"></span>{
+    <span class="built_in">cout</span>&lt;&lt;a[<span class="number">2</span>]&lt;&lt;<span class="built_in">endl</span>;
+}
+<span class="function"><span class="keyword">void</span> <span class="title">print2</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> a[])</span></span>
+<span class="function"></span>{
+    <span class="built_in">cout</span>&lt;&lt;a[<span class="number">2</span>]&lt;&lt;<span class="built_in">endl</span>;
+}
+
+<span class="function"><span class="keyword">void</span> <span class="title">print3</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> a[<span class="number">10</span>])</span></span>{
+    <span class="built_in">cout</span>&lt;&lt;a[<span class="number">2</span>]&lt;&lt;<span class="built_in">endl</span>;
+
+}
+<span class="comment">//实际上类型都是const int*，数组的大小对函数的调用没有影响</span>
+&lt;!--￼<span class="number">0</span>--&gt;</code></pre>
+</li>
+<li><p>对于分离式编程</p>
+<p>g++ fact.cc factMain.cc #同时编译两个文件<br>./a.out 执行编译出来的结果</p>
+<p>或者用分离式编译的方法</p>
+<p>g++ -c fact.cc #先编译fact.cc 生成了fact.o</p>
+<p>g++ -c factMain.cc #后编译factMain生成了factMain.o</p>
+<p>g++ fact.o factMain.o #链接两个文件生成a.out </p>
+<p>./a.out # 执行a.out</p>
+<p>g++ fact.o factMain.o -o main #将产生的a.out重命名为 main</p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *ptrs[<span class="number">10</span>]; <span class="comment">//表示存放10个指针的数组</span></span><br><span class="line"><span class="keyword">int</span> &amp;refs[<span class="number">10</span>]; <span class="comment">//错误，不存在引用的数组</span></span><br><span class="line"><span class="keyword">int</span>(*Parray)[<span class="number">10</span>] = &amp;arr ;<span class="comment">//Parra		y指向一个含有10个int类型的数组</span></span><br><span class="line"><span class="keyword">int</span>(&amp;arrRef)[<span class="number">10</span>] = arr ;<span class="comment">//表示对含有10个数组的引用</span></span><br></pre></td></tr></table></figure>
+
+<p>8.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span> <span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>(*p)[<span class="number">10</span>])</span></span>; <span class="comment">//是为多维数组的形参</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> (&amp;r)[<span class="number">10</span>])</span></span>;<span class="comment">//是一维数组的引用的形参，一定要弄清楚</span></span><br></pre></td></tr></table></figure>
+
+<ol start="9">
+<li>返回类类型的函数和调用韵算法，引用是返回的左值，但是一定要注意的是返回的引用不能使对局部对象（即函数内对象）的引用</li>
+<li>列表初始化返回值</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; <span class="title">pocess</span><span class="params">()</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> &#123;string1,string2,string3&#125;<span class="comment">//一定要用大括号括起来以表示函数返回的临时量的初始化</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="11">
+<li><p>main函数不写return会默认返回一个0</p>
+</li>
+<li><p><cstdlib>中定义了两个预处理变量表示返回结果的成功和失败，分别是<code>EXIT.FAILURE</code> <code>和</code>EXIT.SUCCESS`</p>
+</li>
+<li><p>static只能在定义本文件中不能被extern 声明</p>
+</li>
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> * pstring ;<span class="comment">//此时pstring代表了一个指向char类型的指针</span></span><br><span class="line"><span class="keyword">const</span> pstring ctr = <span class="number">0</span>; <span class="comment">//这代表了指针是常量，而非将char *带入，从而理解为下面的形式</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> * ctr = <span class="number">0</span>;<span class="comment">//这种直接带入的方式是完全错误的</span></span><br><span class="line"><span class="keyword">char</span> <span class="keyword">const</span> *ctr = <span class="number">0</span>;<span class="comment">//这种理解方式才正确</span></span><br></pre></td></tr></table></figure>
+
+<ol start="15">
+<li>函数只能返回数组的指针或者引用,以下方式可以定义返回数组指针或引用函数</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> arrT[<span class="number">10</span>];<span class="comment">//arrT是一个类型别名，表示含有10个整数的数组</span></span><br><span class="line"><span class="keyword">using</span> arrT = <span class="keyword">int</span>[<span class="number">10</span>];<span class="comment">//和上面的声明等价</span></span><br><span class="line"><span class="function">arrT* <span class="title">func</span><span class="params">(<span class="keyword">int</span> i)</span></span>; <span class="comment">//func返回一个只想含有10个整数的数组的指针</span></span><br></pre></td></tr></table></figure>
+
+<ol start="16">
+<li>方法一</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arr[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> * p1[<span class="number">10</span>];<span class="comment">//表示10个指针的数组</span></span><br><span class="line"><span class="keyword">int</span> (*p2)[<span class="number">10</span>] = &amp;arr; <span class="comment">//p2表示指向10个数组元素的指针</span></span><br><span class="line"><span class="comment">// 可以这么理解 int(*p)[10]等价于 int [10] * p,p指针指向10个数组元素</span></span><br><span class="line"><span class="comment">//类似的还有 int(&amp;r) [10] 等价于 int [10] &amp; r,r表示对10个数组元素的引用</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] =&#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span>(*p)[<span class="number">5</span>] = &amp;a;<span class="comment">//a和p的值相同，但数据类型不同，前者指向的是数组的首元素，后者指向的是大小为5的数组对象</span></span><br></pre></td></tr></table></figure>
+
+<ol start="17">
+<li><p>方法二             </p>
+<p> 与上面的说法类似，返回数组指针的函数形式应该是这样的<code>Type(*function(paramter_list)) [dimention]</code>               </p>
+<p>举例说明</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> (*func(<span class="keyword">int</span> i))[<span class="number">10</span>] <span class="comment">//表示返回指向10个int类型数组的指针</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法三 </p>
+<p>尾置信返回类型，尾置返回类型是将返回类型写在函数定义之后用一个-&gt;来表示，前面用一个auto来占位</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auto func(int i) -&gt; int(*)[10] //表示返回一个指向有10个整型变量数组的指针</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法四         </p>
+<p>采用decltype的方法返回一个指针</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> odd[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> even[] = &#123;<span class="number">0</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">decltype</span>(odd) * arrPrt(<span class="keyword">int</span> i)&#123;</span><br><span class="line">  <span class="keyword">return</span> (i%<span class="number">2</span>) ? &amp;odd:&amp;even; <span class="comment">//返回一个指向数组的指针</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用initializer_list<T> list 作为不定数量的形参</p>
+</li>
+</ol>
+<hr>
+<h3 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h3><ol>
+<li><p>函数重载根据传入的实参调用同名的对应的函数，main函数不能够重载</p>
+</li>
+<li><p>对应重载的函数来说，它们应该在形参数量或形参类型上有所不同</p>
+</li>
+<li><p>只有返回值类型不同也是不行的</p>
+</li>
+<li><p>一个拥有顶层const的形参无法和另一个没有顶层const的形参区分开来</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lookup</span><span class="params">(phone a)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lookup</span><span class="params">(<span class="keyword">const</span> phone a)</span></span>;</span><br><span class="line"><span class="comment">//顶层const const int a = b; b是不是常量都无所谓，同理这两个函数也无法区分出来，所以不能重载</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果形参是某种类型的指针或引用，通过区分其指向的是常量对象还是非常量对象可以实现函数重载，此时const是底层（其指向的对象是常量，或者说他指向的对象不是常量，但不能通过其修改）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lookup</span><span class="params">(<span class="keyword">int</span> *i)</span></span>;<span class="comment">//普通指针</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lookup</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> * i)</span></span>;<span class="comment">//指向常量的指针</span></span><br></pre></td></tr></table></figure>
+
+<p>当传递进去的是const对象时就只能用第二个lookup因为<strong>常量类型不能转化为非常量</strong>。相反，非常量可以转化为const，所以当传入非常量时上面两个函数都能被调用，这是编译器会<font color="red">优先调用非常量版本的函数</font>,简而言之，const int 不行 const int *或者 const int &amp; 就可以；</p>
+</li>
+<li><p>只有当函数的功能非常类似的时候再用函数重载</p>
+</li>
+<li><p>const_cast有时和函数重载一起用比较合适</p>
+</li>
+<li><p><strong>函数匹配</strong>又叫<strong>重载确定</strong>，指的是将函数调用与一组重载函数中的某一个关联起来</p>
+</li>
+<li><p>有多个函数可以匹配，但每一个都不是最佳选择。也将发生错误，被称为<strong>二义性调用</strong></p>
+</li>
+<li><p>如果我们在内层作用域中声明名字，他将隐藏外层作用域中声明的同名实体。因此<strong>在不同的作用域中无法重载函数名</strong>。</p>
+</li>
+<li><p>变量名和函数名也不能相同，内层作用域的变量名会屏蔽外层的函数名</p>
+</li>
+<li><p><font color="yellow">名字查找发生在类型检查之前</font></p>
+</li>
+<li><p>复习：const string &amp;可以直接引用字符串字面值，string &amp;则不可以</p>
+</li>
+</ol>
+<hr>
+<h3 id="特殊用途语言特性"><a href="#特殊用途语言特性" class="headerlink" title="特殊用途语言特性"></a>特殊用途语言特性</h3><ol>
+<li><p>默认实参，一旦某个形参被赋予了默认值，他后面的所有形参 都必须有默认值（就是有默认值的形参都要放在后面），<strong>只能省略末尾的形参</strong></p>
+</li>
+<li><p><font color = "pink">尽量让不怎么使用默认值的形参出现在前面，而让那些经常使用默认值的形参出现在后面</font></p>
+</li>
+<li><p>通常应在函数声明中指定默认实参，并将该声明放在合适的头文件中</p>
+</li>
+<li><p>assert是一种预处理宏，使用一个表达式作为条件，<code>assert(expr);</code>表达式为真则什么都不做，表达式为假则终止程序；它被包含在 cassert头文件中，预处理名字由预处理器而非编译器管理，不需要std::assert</p>
+</li>
+<li><p>assert 的行为依赖于NDEBUG预处理变量，如果定义了NDEBUG,则assert什么都不做。默认状态没有NDEBUG，此时assert会在运行时检查</p>
+</li>
+<li><p>我们可以用#define NDEBUG关闭调试状态，assert应该验证那些不可能发生的事情，作为调试程序的一个手段</p>
+</li>
+<li><p>如果NDEBUG未定义，将执行#ifndef和#endif中间的代码，如果定义了NDEBUG,这些代码将不会被执行</p>
+<p>这样就可以编写自己的条件调试代码，用法如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NDEBUG 0; <span class="comment">//当define NDEBUG 时 print不会输出内容，否则会输出内容</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> ia[] ,<span class="keyword">size_t</span> <span class="built_in">size</span>)</span></span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> NDEBUG</span></span><br><span class="line">    <span class="comment">//__func_ _是编译器定义的一个局部静态变量，用于存放函数的名字</span></span><br><span class="line">    <span class="built_in">cerr</span>&lt;&lt;__func__&lt;&lt;<span class="string">": array size is"</span>&lt;&lt;<span class="built_in">size</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> a[<span class="number">4</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="built_in">print</span>(a,<span class="number">4</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="8">
+<li><p><code>__func__</code>是const char的静态数组，用于存放函数名，编译器还定义了4个名字，</p>
+<ul>
+<li><code>__FILE__</code>用来存放文件名的字符串字面值</li>
+<li><code>__LINE__</code>存放当前行号的整形字面值</li>
+<li><code>__TIME__</code>存放文件编译时间的字符串字面值</li>
+<li><code>__DATE__</code>编译日期的字符串字面值</li>
+</ul>
+</li>
+</ol>
+<ol start="9">
+<li>cin是一个对象，当输入非空时 ，cin为true</li>
+</ol>
+<hr>
+<h3 id="函数匹配"><a href="#函数匹配" class="headerlink" title="函数匹配"></a>函数匹配</h3><ol>
+<li><p>当几个重载函数的形参数量相等，或者某些形参的类型可由其它类型转换而来时，调用哪个重载函数将会变得困难，一般寻找形参类型与实参类型最匹配的可行函数</p>
+</li>
+<li><p>在含有多个形参匹配时，可能存在二义性拒绝请求的情况：比如，匹配第一个函数，第一个位置需要类型转换，匹配第二个函数，第二个位置需要，编译器无法确定哪个是最佳匹配，从而无法匹配</p>
+</li>
+<li><p>当存在类型提升时一般会直接提升为int，比如char可能会直接提升为int匹配int形参，而不是匹配short形参</p>
+</li>
+<li><p>小数字面值是double，能转化为long和float，存在二义性</p>
+</li>
+<li><p>不能把普通引用绑定到const对象上，函数重载形参不能是顶层const，因为常量可以给非常量传参</p>
+<p>简而言之，常量可以被复制给非常量但不能被引用给非常量</p>
+</li>
+</ol>
+<hr>
+<h3 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h3><ol>
+<li><p>函数指针的类型由返回值类型和形参类型共同决定</p>
+</li>
+<li><p>当我们把一个函数名作为一个值使用时，该函数自动地转化为指针</p>
+<p>相应的我们还可以直接用指针调用函数，无须提前解引用指针,</p>
+<p>一般只有三种情况发生转换</p>
+<p>作为右值赋值时</p>
+<p>作为函数名调用时</p>
+<p>作为形参时</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> (*pf)(<span class="keyword">const</span> <span class="built_in">string</span>&amp;, <span class="keyword">const</span> <span class="built_in">string</span> &amp;);<span class="comment">//只是声明，还没初始化(定义)</span></span><br><span class="line">pf = lenthCompare; <span class="comment">//pf指向名为lengthCompare的函数，这里lenthCompare为函数名，但其转化为了指向函数的指针</span></span><br><span class="line">pf = &amp;lenthCompare;<span class="comment">//与上面的形式等价</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> b1 = pf(<span class="string">"hello"</span>,<span class="string">"goodbye"</span>);<span class="comment">//调用lenthCompare函数</span></span><br><span class="line"><span class="keyword">bool</span> b2 = (*pf)(<span class="string">"hello"</span>,<span class="string">"goodbye"</span>); <span class="comment">//与上面的形式等价</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>允许给函数指针赋nullptr或者值为0的整型常量表达式，表示该指针没有指向任一函数</p>
+</li>
+<li><pre><code class="C++"><span class="keyword">void</span> (*pf1)(<span class="keyword">int</span>* ) = ff;<span class="comment">//可以直接给pf1函数指针指定值，ff是一个返回值为pf1,形参为int*类型的函数</span>
+<span class="function"><span class="keyword">void</span> <span class="title">pf1</span><span class="params">(<span class="keyword">int</span> *)</span> </span>= ff;<span class="comment">//注意，这种是错误的，只有在函数调用中pf1才能直接写</span>
+&lt;!--￼<span class="number">14</span>--&gt;</code></pre>
+</li>
+<li><p>使用类型别名和decltype简化代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="keyword">bool</span> <span class="title">Func</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; ,<span class="keyword">const</span> <span class="built_in">string</span>&amp;)</span></span>;<span class="comment">//Func1是函数类型</span></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">decltype</span><span class="params">(lengtCompare)</span> Func2</span>; <span class="comment">//和上面等价也是函数类型</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">bool</span><span class="params">(*Funcp)</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp;,<span class="keyword">const</span>)</span></span>;<span class="comment">//Funcp是指向函数的指针类型</span></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">decltype</span><span class="params">(lenthCompare)</span> *FuncP2</span>; <span class="comment">// 与上面等价，注意此时decltype返回的是函数类型而不是函数指针，所以后面需要加*</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">useBigger</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp;, <span class="keyword">const</span> <span class="built_in">string</span>&amp; , Func)</span></span>;<span class="comment">//函数类型还是被转化为了指向函数的指针</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">useBigger</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp;,<span class="keyword">const</span> <span class="built_in">string</span>&amp;, FuncP2)</span></span>;<span class="comment">//和上面的等价了</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="7">
+<li><p>函数名和数组名挺像的，有时候是代表本身，有时候代表的是指针,函数类型不能作为右值赋给另外一个函数类型</p>
+</li>
+<li><p>返回指向函数的指针，可以使用类型别名，也可以使用尾置返回类型</p>
+<p>只能返回函数的指针，不能返回函数类型</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> F = <span class="keyword">int</span> (<span class="keyword">int</span>*,<span class="keyword">int</span>) ;<span class="comment">//F就是函数的类型</span></span><br><span class="line"><span class="keyword">using</span> PF = <span class="keyword">int</span>(*)(<span class="keyword">int</span>*,<span class="keyword">int</span>);<span class="comment">//PF是函数指针类型</span></span><br><span class="line"><span class="function">PF <span class="title">f1</span><span class="params">(<span class="keyword">int</span>)</span></span>; <span class="comment">//返回的时候函数指针类型</span></span><br><span class="line"><span class="function">F <span class="title">f1</span><span class="params">(<span class="keyword">int</span>)</span></span>; <span class="comment">//错误，不能返回函数类型</span></span><br><span class="line"><span class="function">F * <span class="title">f1</span><span class="params">(<span class="keyword">int</span> )</span></span>; <span class="comment">//正确</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//下面是直接声明的形式</span></span><br><span class="line"><span class="keyword">int</span> (*f1(<span class="keyword">int</span>))(<span class="keyword">int</span> *,<span class="keyword">int</span>);</span><br><span class="line">auto f1(int) -&gt; int(*)(int*,int);//尾置类型说明</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用decltype(函数名)返回的是一个函数类型，而非指针类型，作为另一个函数返回类型的声明时需要加上*表示需要返回指针</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/26/%E7%AC%AC6%E7%AB%A0%20%E5%87%BD%E6%95%B0%20/" data-id="ckebbherm00056z2zel091n0w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-第5章 语句" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/26/%E7%AC%AC5%E7%AB%A0%20%E8%AF%AD%E5%8F%A5/" class="article-date">
+  <time datetime="2020-02-26T12:48:36.883Z" itemprop="datePublished">2020-02-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/26/%E7%AC%AC5%E7%AB%A0%20%E8%AF%AD%E5%8F%A5/">第5章 语句</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="简单语句"><a href="#简单语句" class="headerlink" title="简单语句"></a>简单语句</h2><h2 id="语句作用域"><a href="#语句作用域" class="headerlink" title="语句作用域"></a>语句作用域</h2><h2 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h2><ol>
+<li><p>初始化和赋值操作的对象如果能转化为bool类型，则初始化操作将返回该对象转化为bool类型后的值</p>
+</li>
+<li><p>赋值和初始化会自动将右值的类型转变为左值的类型</p>
+</li>
+<li><p>switch对（）内的内容求值与case标签做对比；case标签后必须跟<strong>常量类型表达式</strong>（必须是常量）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(a)&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'1'</span>:</span><br><span class="line">        <span class="comment">/*  case后面必须跟整型常量表达式     */</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>无论是case标签还是default标签，他都不能孤零零 的出现，后面必须跟一个语句或者<strong>另外一个case标签</strong>，default后面可以加上空语句或空块。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/02/26/%E7%AC%AC5%E7%AB%A0%20%E8%AF%AD%E5%8F%A5/" data-id="ckebbherf00046z2z2v9o5ror" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-第4章 表达式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/15/%E7%AC%AC4%E7%AB%A0%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-date">
+  <time datetime="2020-02-15T10:22:14.704Z" itemprop="datePublished">2020-02-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/15/%E7%AC%AC4%E7%AB%A0%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/">第4章 表达式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ol>
+<li>运算符作用于运算对象(变量或者字面值)即为表达式（复合表达式）</li>
+<li>函数调用是一种特殊的运算符</li>
+<li>对象被作为右值时，用的是对象的值(内容)，用作左值时，用的是对象的身份(在内存中的位置)</li>
+<li>decltype( * p) 推断出来的是int &amp;类型,* p是一个左值，表示一个对象，因此是引用类型</li>
+<li>优先级和结合律和求职顺序决定了复合表达式</li>
+<li>当求值顺序未定义时，当复合表达式指向并修改了同一个对象时会产生不可预知的行为 </li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">" "</span>&lt;&lt;++i&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>算数运算符运算的结果都是右值(有的运算符运算的结果不一定是右值)</li>
+<li>算数运算符能提升运算对象，使得表达式的类型统一</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> b = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">bool</span> b2 = -b;<span class="comment">//-b提升为int类型-1，又被转化为bool类型true</span></span><br></pre></td></tr></table></figure>
+
+<ol start="9">
+<li>c++规定(-m/n) = (m/-n) = -(m/n) , (-m)%n = -(m%n), m%(-n) = m%n</li>
+<li>赋值运算满足右结合律</li>
+<li>退化表示对象变成首元素地址（发生在数组中），提升表示一种类型的转换，表达式中可能会出现（算数运算或者逻辑运算包括关系运算），退化和提升没有啥关系</li>
+<li>逻辑运算符和关系运算符返回的结果是布尔类型</li>
+<li>while（i==ture）会出错，true会提升为int的1，只有当i为1时才返回true（关系运算符的结果是bool类型）</li>
+<li>赋值运算符不会产生提升，反而会进行类型转化 ，int a ； a = 3.13；3.13会转化为int类型 的</li>
+<li>有的迭代器不支持算数运算，自增自减可以，建议使用前置版本的自增自减运算</li>
+<li>后置版本的自增自减是先进行自增自减，然后返回复制的之前的值</li>
+<li>不要在一个表达式中多次出现会被改变的运算对象</li>
+<li>后置自增自减运算符的优先级低于 .运算符(a.size())的优先级，后者高于*（解引用）运算符</li>
+<li>ci是迭代器*ci++很常用，先算ci++返回ci再解引用</li>
+</ol>
+<hr>
+<h2 id="条件运算符"><a href="#条件运算符" class="headerlink" title="条件运算符"></a>条件运算符</h2><ol>
+<li><code>? a:b</code>    返回结果既可以当作左值也可以当作右值（于a和b是左值还是右值有关）</li>
+<li>条件表达式可以嵌套，满足右结合律，应该从右向左读</li>
+<li>条件运算符的优先级非常非常低，所以应该将其用括号括起来</li>
+</ol>
+<hr>
+<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><ol>
+<li>关于符号位如何处理没有明确的规定，所以建议仅仅将位运算符用于处理无符号类型</li>
+<li>左移右移时，短的整型(比如char等)可能会提升为int</li>
+</ol>
+<hr>
+<h2 id="sizeof运算符"><a href="#sizeof运算符" class="headerlink" title="sizeof运算符"></a>sizeof运算符</h2><ol>
+<li>他可以返回表达式结果类型的大小</li>
+<li>sizeof右侧的元素其实不会被计算</li>
+<li>sizeof是运算符 右结合律，从右往左看(不加括号也行)</li>
+</ol>
+<hr>
+<h2 id="逗号运算符"><a href="#逗号运算符" class="headerlink" title="逗号运算符"></a>逗号运算符</h2><ol>
+<li>对于逗号运算符来说，首先对左侧的表达式求值，然后丢弃；真正的结果是右侧表达式的值</li>
+<li>一般在for循环中使用</li>
+</ol>
+<hr>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><ol>
+<li><p>隐式转换自动发生，一般朝不损失精度的方向转换</p>
+</li>
+<li><p>初始化和赋值时，右侧对象转换为左侧对象的类型</p>
+</li>
+<li><p>算数转换：当无符号类型和有符号类型相加时，谁的类型大转化为谁的（从int转化为unsigned可能会发生错误)</p>
+</li>
+<li><p>表达式中比int类型小的一般会先转化为int类型</p>
+</li>
+<li><p>cast-name<type>(expression) 为命名式的强制转换</p>
+</li>
+<li><p>static_cast是普通的类型转换，当损失精度时不报错</p>
+</li>
+<li><p>const_cast只能改变对象的的底层const (指针指向常量)，不能改变对象的类型</p>
+</li>
+</ol>
+<ol>
+<li><pre><code class="c++"><span class="keyword">char</span> a = <span class="string">'a'</span>;
+<span class="keyword">const</span> <span class="keyword">char</span> *pc = &amp;a;
+<span class="keyword">char</span> *p = <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt; (pc);<span class="comment">//pc是底层const，转变为char *，但是通过p修改a的做法是未定义的</span>
+*p = <span class="string">'b'</span>;
+<span class="comment">//*pc = 'c'; 不合法无法通过底层const修改a</span>
+<span class="built_in">cout</span>&lt;&lt; a &lt;&lt;<span class="built_in">endl</span>;
+a = <span class="string">'c'</span>;
+<span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;
+</code></pre>
+<ol start="8">
+<li>reinterpret_const在位的层面上改变对象的类型</li>
+<li>除了底层const的指针，可以把任何类型的指针的值赋给void *类型的指针</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/02/15/%E7%AC%AC4%E7%AB%A0%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ckebbher600006z2zgv9fe1ci" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-第3章 字符串和向量和数组" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/04/%E7%AC%AC3%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/" class="article-date">
+  <time datetime="2020-02-04T11:52:55.053Z" itemprop="datePublished">2020-02-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/04/%E7%AC%AC3%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/">第3章 字符串和向量和数组</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h2><hr>
+<ol>
+<li>使用方法：using namespace::name ; 例如using std::cin</li>
+<li>每个名字都需要独立的using声明</li>
+<li>头文件中一般不用命名空间</li>
+</ol>
+<h2 id="标准库类型-string"><a href="#标准库类型-string" class="headerlink" title="标准库类型 string"></a>标准库类型 string</h2><hr>
+<ol>
+<li><p>拷贝初始化（用“=”），直接初始化不用“=”</p>
+</li>
+<li><p>直接初始化适用范围更广（毕竟面向对象）</p>
+<table>
+<thead>
+<tr>
+<th>os&lt;&lt;s</th>
+<th>写入输出流</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>is&gt;&gt;s</td>
+<td>读取字符流</td>
+</tr>
+<tr>
+<td>getline(is,s)</td>
+<td>从is中读取一行赋给s</td>
+</tr>
+<tr>
+<td>s.empty（）</td>
+<td>s为空返回true，否则返回false</td>
+</tr>
+<tr>
+<td>s.size（）</td>
+<td>返回s中字符的个数</td>
+</tr>
+<tr>
+<td>s[n]</td>
+<td>检索第n个字符</td>
+</tr>
+<tr>
+<td>s1 + s2</td>
+<td>返回连接后的结果</td>
+</tr>
+<tr>
+<td>s1 = s2</td>
+<td>用s2的副本代替s1中原来的字符</td>
+</tr>
+<tr>
+<td>s1 == s2</td>
+<td>判断是否相等</td>
+</tr>
+<tr>
+<td>s1 != s2</td>
+<td>等性判断，大小写敏感</td>
+</tr>
+<tr>
+<td>&lt;, &lt;=, &gt;, &gt;=</td>
+<td>字典序排序</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>读写string对象 ，cin只能读取非空白符，遇到空白结束</p>
+</li>
+<li><p>读取未知数量的string对象（commad + D是文件结束符）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">string</span> <span class="keyword">word</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;<span class="keyword">word</span>)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="keyword">word</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用getline读取一整行（可以保留空白符）</p>
+<p>getline(cin,line)从输入读取到line中，直到遇到换行符为止，换行符会被丢弃。 </p>
+<p>getline会返回一个流对象，可以一直输入。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> <span class="built_in">line</span>;</span><br><span class="line">    <span class="comment">//每次读入一整行，知道达到文件末尾</span></span><br><span class="line">    <span class="keyword">while</span>(getline(<span class="built_in">cin</span>,<span class="built_in">line</span>))</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt; <span class="built_in">line</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>string的empty和size操作</p>
+<p>string.empty( )会返回一个布尔值，string.size( )会返回字符串的长度</p>
+<p>这个长度值是一个string::size_type的类型(这是一个无符号的值)，所以千万不要和int混用。   </p>
+</li>
+<li><p>字符串字面值不能直接相加</p>
+</li>
+<li><p>字符产不能直接相加不能直接相加，string对象可以加字面值，也可以加string对象。切记字符串字面值不是string对象</p>
+</li>
+<li><p>字典序，越往后越大</p>
+</li>
+</ol>
+<h3 id="处理string对象中的字符"><a href="#处理string对象中的字符" class="headerlink" title="处理string对象中的字符"></a>处理string对象中的字符</h3><ol>
+<li><table>
+<thead>
+<tr>
+<th>代码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>isalnum(c)</td>
+<td>当c是字母或数字时为真</td>
+</tr>
+<tr>
+<td>isalpha(c)</td>
+<td>当c是字母时为真</td>
+</tr>
+<tr>
+<td>iscntrl(c)</td>
+<td>当c是控制时为真</td>
+</tr>
+<tr>
+<td>isdigit(c)</td>
+<td>当c是数字时为真</td>
+</tr>
+<tr>
+<td>isgraph(c)</td>
+<td>当c不是空格但可打印时为真</td>
+</tr>
+<tr>
+<td>islower(c)</td>
+<td>当c是小写字母时为真</td>
+</tr>
+<tr>
+<td>isprint(c)</td>
+<td>当c是可打印字符时为真（空格或具有可视形式）</td>
+</tr>
+<tr>
+<td>ispunct(c)</td>
+<td>当c是标点符号时为真(即c不是控制字符，数字，字母，可打印空白中的一种)</td>
+</tr>
+<tr>
+<td>isspace(c)</td>
+<td>当c是空白时为真(即c是空格，横向制表符，纵向制表符，回车符，换行符，进纸符)</td>
+</tr>
+<tr>
+<td>isupper(c)</td>
+<td>当c是大写字母时为真</td>
+</tr>
+<tr>
+<td>isxdigit(c)</td>
+<td>当c是十六进制字母时为真</td>
+</tr>
+<tr>
+<td>tolower(c)                 toupper(c)</td>
+<td>如果c是大写字母，输出对应的小写字母，否则原样输出c ; 如果c是小写字母，输出对应的大写字母，否则原样输出c。</td>
+</tr>
+</tbody></table>
+<p>一般来说，C++应使用cname而非name.h的头文件。  </p>
+</li>
+</ol>
+<h3 id="处理每个字符使用基于范围的for语句"><a href="#处理每个字符使用基于范围的for语句" class="headerlink" title="处理每个字符使用基于范围的for语句"></a>处理每个字符使用基于范围的for语句</h3><p>for (auto i : strings)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"hello world !!!!"</span>)</span></span>;</span><br><span class="line">    <span class="keyword">decltype</span>(s.<span class="built_in">size</span>())  pun_cnt = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// 注意返回值是 string::size_type类型</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> c : s)</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">ispunct</span>(c))</span><br><span class="line">            ++pun_cnt;</span><br><span class="line">        </span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;pun_cnt</span><br><span class="line">        &lt;&lt;<span class="string">"punctuation characters in "</span>&lt;&lt;s&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用范围for语句改变字符串中的字符"><a href="#使用范围for语句改变字符串中的字符" class="headerlink" title="使用范围for语句改变字符串中的字符"></a>使用范围for语句改变字符串中的字符</h3><ol>
+<li>关键是要用引用，for (auto&amp; c : strings)</li>
+</ol>
+<h3 id="只处理一部分字符"><a href="#只处理一部分字符" class="headerlink" title="只处理一部分字符"></a>只处理一部分字符</h3><ol>
+<li>使用下标或者使用迭代器，下标运算符[ ]接受的下标是size_type类型,返回值是对该位置字符的引用。s[0]到s[s.size()-1]</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"some string"</span>)</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(!s.empty())</span><br><span class="line">        s[<span class="number">0</span>] = <span class="built_in">toupper</span>(s[<span class="number">0</span>]);<span class="comment">//下标是引用</span></span><br><span class="line">  	<span class="keyword">for</span>(<span class="keyword">decltype</span>(s.<span class="built_in">size</span>())  index = <span class="number">0</span>; index != s.<span class="built_in">size</span>()&amp;&amp; !<span class="built_in">isspace</span>(s[index]); ++index)</span><br><span class="line">        s[index] = <span class="built_in">toupper</span>(s[index]);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;s&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>c++不要求检测下标是否合法，使用超出范围的下标就会产生不可预知的结果</li>
+</ol>
+<hr>
+<h2 id="标准库类型vector-容器"><a href="#标准库类型vector-容器" class="headerlink" title="标准库类型vector(容器)"></a>标准库类型vector(容器)</h2><hr>
+<ol>
+<li><p>vector表示对象的集合，其中所有对象的类型都相同，也被称为容器(container),vector其实是一个类模版。</p>
+</li>
+<li><p>模版本身不是类或函数，模版是为为编译器生成类或函数编写的一份说明。编译器根据模版创建类或函数的过程称为实例化，当使用模版时，需要指明编译器把类或函数实例化何种类型。对于类模版来说，我们通过提供额外的信息来指定模版到底实例化成什么样的类，需要提供哪些信息由模版决定。提供信息在模版后跟一对尖括号，在括号内加入信息。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec; <span class="comment">//ivec保存int类型的对象</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; file;</span><br></pre></td></tr></table></figure>
+
+<p>ivec 保存int类型的对象，类型是vector<int></p>
+</li>
+<li><p>( )是默认初识化的方法</p>
+</li>
+<li><p>{ }是列表初始化的方法，当其无意义时会考虑使用默认初识化的方法（即退化为（）</p>
+</li>
+</ol>
+<h3 id="向vector对象中添加元素"><a href="#向vector对象中添加元素" class="headerlink" title="向vector对象中添加元素"></a>向vector对象中添加元素</h3><ol>
+<li>使用vector的push_back可以向vector中加入元素</li>
+<li>通常做法是定义一个空的vector，再用push_back( )往里面放，这样反而比给出vector的大小再往里面放的效率高（动态大于静态）</li>
+<li>其他操作 .size( ) .empty( ) .push_back( ) 等</li>
+<li>注意：不能使用下标给未定义的位置赋值或进行访问等操作，否则会造成缓冲区溢出这种类似的错误(buffer overflow)</li>
+</ol>
+<hr>
+<hr>
+<h2 id="迭代器-就像一个指针"><a href="#迭代器-就像一个指针" class="headerlink" title="迭代器(就像一个指针)"></a>迭代器(就像一个指针)</h2><hr>
+<ol>
+<li><p>迭代器是一种通用机制来访问容器中的对象；所有标准库容器都能用迭代器访问，但是只有少部分支持下标访问。</p>
+</li>
+<li><p>类似指针类型，迭代器提供了对对象的间接访问。就迭代器而言，其对象是容器中的元素或者string对象中的字符。使用迭代器可以访问某个元素，迭代器也能从一个元素移动到另外一个元素。迭代器有有效和无效之分，和指针相似。有效的迭代器或者指向某个元素，或者指向容器中尾元素的下一位置；其他所有情况都属于无效</p>
+</li>
+<li></li>
+<li><pre><code class="c++">    <span class="function"><span class="built_in">string</span> <span class="title">v</span><span class="params">(<span class="string">"hello,world!!!"</span>)</span></span>;
+    <span class="keyword">auto</span> b = v.<span class="built_in">begin</span>();<span class="comment">//b是一个迭代器，指向v的第一个元素</span>
+    <span class="keyword">auto</span> e = v.<span class="built_in">end</span>();<span class="comment">//e是一个迭代器，指向v的尾元素的下一个位置，被称为尾迭代器/尾后迭代器</span>
+<span class="comment">//若是容器为空则两者都返回尾后迭代器</span>
+&lt;!--￼<span class="number">5</span>--&gt;</code></pre>
+</li>
+<li><p>数组下标的类型是size_t</p>
+</li>
+<li><p>数组名有时候表示的表示指针指向首地址，有时候表示数组对象本身</p>
+</li>
+<li><p>尾后指针类型尾后迭代器，int * p = &amp;a[n];</p>
+</li>
+<li><p>数组类型不是类类型,所以没有.begin( )和.end( )这种成员函数,用begin(a),begin(b)这种方式作用在上面</p>
+</li>
+<li><p>标准库类型的下标是size_type( )类型，无符号数；数组下标是有符号的数</p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> *p = <span class="built_in">begin</span>(ia) + <span class="number">3</span>;<span class="comment">//begin()得到迭代器，指针就是迭代器</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;p[<span class="number">-2</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="重点在于：数组名不一定总是指针，大部分时间表示数组对象，当其作为指针时可以当作是一种退化，退化成类型迭代器的东西（但他是常量，只能赋值给其他指针，begin和end函数也能完成这种功能）"><a href="#重点在于：数组名不一定总是指针，大部分时间表示数组对象，当其作为指针时可以当作是一种退化，退化成类型迭代器的东西（但他是常量，只能赋值给其他指针，begin和end函数也能完成这种功能）" class="headerlink" title="重点在于：数组名不一定总是指针，大部分时间表示数组对象，当其作为指针时可以当作是一种退化，退化成类型迭代器的东西（但他是常量，只能赋值给其他指针，begin和end函数也能完成这种功能）"></a>重点在于：数组名不一定总是指针，大部分时间表示数组对象，当其作为指针时可以当作是一种退化，退化成类型迭代器的东西（但他是常量，只能赋值给其他指针，begin和end函数也能完成这种功能）</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> b = ia; b&lt;<span class="built_in">end</span>(ia);b++)</span><br><span class="line">    *b = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> a :ia)</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"hello world"</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> i = s.<span class="built_in">begin</span>();i !=s.<span class="built_in">end</span>();i++)</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;*i&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> s[] = <span class="string">"hello world"</span>;</span><br><span class="line"> <span class="built_in">string</span> a = s<span class="comment">// s表示这个字符串数组对象，而不能用s[]，这和c语言不同</span></span><br><span class="line"> <span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>新旧风格代码混用时 ：不能使用string类型初始化即char * s = string类型对象是不合法的，char *s = string.c_str( )才可以</li>
+<li>不能用标准库类型初始化数组，但是可以用数组初始化vector等容器</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> int_arr[] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>&#125;;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">subvec</span><span class="params">(int_arr,<span class="built_in">end</span>(int_arr))</span></span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> i: subvec)</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<h2 id="多维度数组"><a href="#多维度数组" class="headerlink" title="多维度数组"></a>多维度数组</h2><ol>
+<li>所谓多维数组就是数组的数组；</li>
+<li>使用range for时除了最内层，其他控制变量都应该是引用类型</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> row: a)<span class="comment">//row作为数组名会退化，auto会变成int * 类型，而不是命为row的数组对象</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> col :row)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;col&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125; ;</span><br><span class="line">   <span class="keyword">int</span> (*p)[<span class="number">4</span>] = a;<span class="comment">//a表示的是第一个元素的地址，发生退化现象</span></span><br><span class="line">   p = &amp;a[<span class="number">2</span>];<span class="comment">//这里a[2]表示的是一个内层数组，没有退化，只有加&amp;时才表示该数组的地址</span></span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;a[<span class="number">2</span>]&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//这里发生了退化，表示首元素的地址</span></span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;&amp;a[<span class="number">2</span>]&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//这里没有退化，取地址符后才得到首元素的地址</span></span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;*a&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//这里的*a表示的是退化了的a[2],即是a[2]的首地址，**a才是元素的值</span></span><br><span class="line">   <span class="comment">//注意当使用cout&lt;&lt; a[2]&lt;&lt;endl;这种方式时会退化</span></span><br><span class="line">#一维下也是如此</span><br><span class="line">   <span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">   <span class="keyword">int</span> (*p)[<span class="number">5</span>] = &amp;a;<span class="comment">//此处a未发生退化</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[<span class="number">3</span>][<span class="number">4</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> (row)[<span class="number">4</span>] :ia)<span class="comment">//这是错误的，解析ia会发生退化变成指针而非数组对象，必须加引用才行</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> b : row)</span><br><span class="line">      <span class="built_in">cout</span>&lt;&lt; b &lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">习题总结</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ia[<span class="number">3</span>][<span class="number">4</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> (&amp;row)[<span class="number">4</span>] :ia)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> b : row)</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;b&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> i= <span class="number">0</span>;i&lt;<span class="number">3</span>;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">size_t</span> j = <span class="number">0</span>;j&lt;<span class="number">4</span>;j++)</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;ia[i][j]&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> (*p)[<span class="number">4</span>] = ia; p != ia + <span class="number">3</span>;p++)</span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> *q = <span class="built_in">begin</span>((*p)); q!= <span class="built_in">end</span>((*p));q ++)</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;*q&lt;&lt;<span class="string">" "</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">using</span> int_4 = <span class="keyword">int</span> [<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(int_4 *p = ia;p != ia+<span class="number">3</span>;p++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> *q = *p;q !=(*p)+<span class="number">4</span>;q++)</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;*q&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> p = ia;p != ia+<span class="number">3</span>;p++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> q = (*p);q != (*p)+<span class="number">4</span>;q++)</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;*q&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>数组是一种类似字面值的东西，可以复制给string vector等对象（反之则不行）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/02/04/%E7%AC%AC3%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/" data-id="ckebbherb00016z2z1q0kgxfh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-第2章 auto和decltype总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/12/%E7%AC%AC2%E7%AB%A0%20auto%E5%92%8Cdecltype%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2020-01-12T13:34:43.890Z" itemprop="datePublished">2020-01-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/12/%E7%AC%AC2%E7%AB%A0%20auto%E5%92%8Cdecltype%E6%80%BB%E7%BB%93/">第2章 auto和decltype总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h2><hr>
+<ol>
+<li><p>auto定义的变量必须有初始值</p>
+</li>
+<li><p>auto也能在一条声明语句中声明多个变量，但一条声明语句只有一个基本数据类型，所以该语句中<font color = "pink">所有变量的初始基本数据类型*<em>必须相同 *</em></font></p>
+</li>
+<li><p>编译器会以 *<em>被引用变量 *</em>的值类型作为auto的类型</p>
+</li>
+<li><p>auto会忽略顶层const，同时保留底层const。如果希望 推断出来的auto是一个顶层const，可以用<font color = "yellow"> const auto f = j</font></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>, &amp;r = i;</span><br><span class="line"><span class="keyword">auto</span> a = r;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = i, &amp;cr = ci;<span class="comment">//ci 是常量，cr是对常量的引用</span></span><br><span class="line"><span class="keyword">auto</span> b = ci; <span class="comment">//auto会忽略顶层常量</span></span><br><span class="line"><span class="keyword">auto</span> c = cr; <span class="comment">//同上</span></span><br><span class="line"><span class="keyword">auto</span> d = &amp;i; <span class="comment">//d是指针指向i，是一个整型指针</span></span><br><span class="line"><span class="keyword">auto</span> e = &amp;ci; <span class="comment">//底层const，e是指向常量的指针（pointer to const）</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">auto</span> f = ci;<span class="comment">//强行让拷贝初始化保留顶层const</span></span><br><span class="line"><span class="keyword">auto</span> &amp;g = ci; <span class="comment">//引用一直是底层const，整型常量的引用</span></span><br><span class="line"><span class="keyword">auto</span> &amp;h = <span class="number">42</span>;<span class="comment">//错误，不能为非常量绑定字面值</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">auto</span> &amp;j = <span class="number">42</span>; <span class="comment">//正确， 可以给常量引用绑定字面值</span></span><br><span class="line"><span class="keyword">auto</span> k = ci, &amp;l = i;<span class="comment">//正确，都是普通变量</span></span><br><span class="line"><span class="keyword">auto</span> &amp;m = ci, *p = &amp;ci;<span class="comment">//正确，都是const int</span></span><br><span class="line"><span class="keyword">auto</span> &amp;n = i, *p = ci; <span class="comment">//错误，前者是int *，后者const int *</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+<hr>
+<h2 id="decltype"><a href="#decltype" class="headerlink" title="decltype"></a>decltype</h2><hr>
+<ol>
+<li><p>作用：选择并返回操作数的数据类型。编译器分析表达式的类型，却不实际计算表达式的值。</p>
+</li>
+<li><p>decltype 处理顶层const和引用的方式不同。decltype会返回变量真实的类型（包括顶层const和引用在内）</p>
+</li>
+<li><p>引用从来都是作为其所指对象的同义词出现，只有用在decltype处是一个例外</p>
+</li>
+<li><p>有些表达式能向decltype返回引用类型。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">42</span>, *p = &amp;i, &amp;r = i;</span><br><span class="line"><span class="keyword">decltype</span> (r + <span class="number">0</span>) b =<span class="number">32</span>;</span><br><span class="line"><span class="keyword">decltype</span>(*p) c;<span class="comment">//*p是引用类型，c必须被赋初值</span></span><br><span class="line"><span class="keyword">decltype</span>((i)) d; <span class="comment">//d是一个引用，必须初始化</span></span><br><span class="line"><span class="keyword">decltype</span>(i) e; <span class="comment">//e是一个未初始化的int</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>decltype 的表达式如果是加上了括号的变量，结果是引用。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/12/%E7%AC%AC2%E7%AB%A0%20auto%E5%92%8Cdecltype%E6%80%BB%E7%BB%93/" data-id="ckebbherc00026z2z9t2sd2gn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-零碎知识" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/12/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/" class="article-date">
+  <time datetime="2020-01-12T13:30:59.679Z" itemprop="datePublished">2020-01-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/12/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/">零碎知识</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="零碎知识"><a href="#零碎知识" class="headerlink" title="零碎知识"></a>零碎知识</h1><hr>
+<h2 id="复合类型"><a href="#复合类型" class="headerlink" title="复合类型"></a>复合类型</h2><ul>
+<li><p>一个基本数据类型 + 一组声明符（声明符包含类型修饰符 * 和 &amp;）</p>
+</li>
+<li><p>复杂的指针和引用可以从右向左读，离变量名最近的的类型修饰符对变量的类型产生最直接的影响，声明符的其他部分用以确定r引用的类型是什么</p>
+</li>
+<li><p>拷贝一个对象的值不会改变他，拷贝完成，新对象与原对象无关</p>
+</li>
+<li><p>一个文件中给出定义，多个文件中可以声明（用关键字extern，而且不能重复定义）</p>
+</li>
+<li><p>默认状态下，<code>const</code> 对象仅在文件内有效（在定义和声明时都用const就可以都有效）</p>
+</li>
+<li><p>引用只能绑定在对象上，不能与某个字面值或表达式的结果绑定，有两个例外</p>
+<p>第一个就是： <code>const int  &amp;r1  = 42;</code>(表达式能转化为引用的类型）</p>
+</li>
+</ul>
+<hr>
+<h2 id="constexpr-和-常量表达式"><a href="#constexpr-和-常量表达式" class="headerlink" title="constexpr  和 常量表达式"></a><code>constexpr</code>  和 常量表达式</h2><ul>
+<li>常量表达式指值不会改变并且在编译过程中就能得到计算结果的表达式，字面值属于常量表达式 。只有本身是常量，且初始值是常量表达式时，才是常量表达式。</li>
+<li>将 变量声明为 <code>constexpr</code>  以便编译器验证变量的值是否是一个常量表达式，声明为 <code>constexpr</code>  的变量一定是常量，必须用常量表达式初始化。 </li>
+<li>总之，常量表达式一定是在编译时就能计算出值的常量，可以用constexpr函数初始化constexpr常量</li>
+<li>constexpr把他所定义的对象置为了顶层const</li>
+<li>如果你认为他是常量就给他定义为constexpr</li>
+</ul>
+<hr>
+<h2 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> * pstring;</span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line"><span class="keyword">using</span> pstring = <span class="keyword">char</span> *;</span><br><span class="line"><span class="keyword">const</span> pstring  cstr = <span class="literal">nullptr</span>; <span class="comment">//cstr 是 const pionter不是pointer to    const，不能把typedef的东西直接带进去</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *  cstr2 = <span class="literal">nullptr</span>;<span class="comment">//与上者完全不同</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="自定义数据结构"><a href="#自定义数据结构" class="headerlink" title="自定义数据结构"></a>自定义数据结构</h2><ol>
+<li><p>注意后面加分号</p>
+</li>
+<li><p>将类定义在头文件中（实现不一定在头文件中），使用头文件保护符避免重复导入</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面说明头文件包回复</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> NN</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NN</span></span><br><span class="line"><span class="comment">//在此处定义头文件中的内容</span></span><br><span class="line"><span class="comment">//......</span></span><br><span class="line"><span class="comment">//......</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="comment">//这种方式确定头文件不会被重复导入</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/12/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/" data-id="ckebbhern00066z2z2oof906i" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-第2章 const总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/12/%E7%AC%AC2%E7%AB%A0%20const%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2020-01-12T10:11:43.921Z" itemprop="datePublished">2020-01-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/12/%E7%AC%AC2%E7%AB%A0%20const%E6%80%BB%E7%BB%93/">第2章 const总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="const-总结"><a href="#const-总结" class="headerlink" title="const 总结"></a>const 总结</h2><hr>
+<ol>
+<li><p>const对象必须初始化</p>
+</li>
+<li><p>默认状态下，const对象仅在文件内有效（无论是定义 还是声明，都应该在const前面加上extern，必须都要加上，少一个都不行；但是，对于普通的对象来说，只需要在使用的地方加上extern 就可以了，定义的地方并不需要）</p>
+</li>
+<li><p>非常量引用不能引用常量对象；常量引用能引用非常量对象（只是不能通过该引用改变这个非常量的值，但非常量对象的值是可以改变的）</p>
+</li>
+<li><p>非pointer to const不能指向常量；pointer to const能指向非常量对象（只是不能通过指针改变。。。自以为是认为自己指向了常量</p>
+</li>
+<li><p>const pointer 表示指针本身是常量</p>
+</li>
+<li><pre><code class="c++"><span class="comment">// C4227.cpp</span>
+<span class="comment">// compile with: /W1 /c</span>
+<span class="keyword">int</span> j = <span class="number">0</span>;
+<span class="keyword">int</span> &amp;<span class="keyword">const</span> i = j;   <span class="comment">// C4227</span>
+<span class="comment">//这个写法会给一个warning，但不会会被丢弃</span>
+&lt;!--￼<span class="number">0</span>--&gt;</code></pre>
+</li>
+<li><p>底层const的限制就不能忽略。拷贝时，拷入和拷出的对象必须具有相同的底层const资格，或者两个对象的数据类型必须能够转换。非常量可以转为常量，反之不行，具体来说就是 int * 类型能转化为const int * 类型，而const int * 不能转化为int  *类型；int *可作为左值赋给cosnt int *，反之不行。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = p3;<span class="comment">//错误 ，p3包含底层const的含义，p没有</span></span><br><span class="line">p2 = &amp;i; <span class="comment">//右边int *  能转变为左边的const int *</span></span><br><span class="line"><span class="keyword">int</span> &amp;r = ci; <span class="comment">//普通引用不能绑定到const变量上</span></span><br><span class="line">  <span class="keyword">const</span>  <span class="keyword">int</span> &amp;r2 = i; <span class="comment">//const引用能绑定到普通变量上</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>总结：对于指针来说顶层const可以忽略（拷贝时），对于引用来说，只存在底层const，对于const的对象也必须用const的引用<code>const &amp; ri</code></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/12/%E7%AC%AC2%E7%AB%A0%20const%E6%80%BB%E7%BB%93/" data-id="ckebbhere00036z2zgqnb7fzw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/26/%E7%AC%AC6%E7%AB%A0%20%E5%87%BD%E6%95%B0%20/">第6章 函数 </a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/26/%E7%AC%AC5%E7%AB%A0%20%E8%AF%AD%E5%8F%A5/">第5章 语句</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/15/%E7%AC%AC4%E7%AB%A0%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/">第4章 表达式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/04/%E7%AC%AC3%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/">第3章 字符串和向量和数组</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/12/%E7%AC%AC2%E7%AB%A0%20auto%E5%92%8Cdecltype%E6%80%BB%E7%BB%93/">第2章 auto和decltype总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

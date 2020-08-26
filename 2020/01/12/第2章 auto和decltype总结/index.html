@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>第2章 auto和decltype总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="auto  auto定义的变量必须有初始值  auto也能在一条声明语句中声明多个变量，但一条声明语句只有一个基本数据类型，所以该语句中所有变量的初始基本数据类型*必须相同 *  编译器会以 *被引用变量 *的值类型作为auto的类型  auto会忽略顶层const，同时保留底层const。如果希望 推断出来的auto是一个顶层const，可以用 const auto f &#x3D; j 12345678">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第2章 auto和decltype总结">
+<meta property="og:url" content="http://yoursite.com/2020/01/12/%E7%AC%AC2%E7%AB%A0%20auto%E5%92%8Cdecltype%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="auto  auto定义的变量必须有初始值  auto也能在一条声明语句中声明多个变量，但一条声明语句只有一个基本数据类型，所以该语句中所有变量的初始基本数据类型*必须相同 *  编译器会以 *被引用变量 *的值类型作为auto的类型  auto会忽略顶层const，同时保留底层const。如果希望 推断出来的auto是一个顶层const，可以用 const auto f &#x3D; j 12345678">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-12T13:34:43.890Z">
+<meta property="article:modified_time" content="2020-02-04T11:53:30.703Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-第2章 auto和decltype总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/12/%E7%AC%AC2%E7%AB%A0%20auto%E5%92%8Cdecltype%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2020-01-12T13:34:43.890Z" itemprop="datePublished">2020-01-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第2章 auto和decltype总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h2><hr>
+<ol>
+<li><p>auto定义的变量必须有初始值</p>
+</li>
+<li><p>auto也能在一条声明语句中声明多个变量，但一条声明语句只有一个基本数据类型，所以该语句中<font color = "pink">所有变量的初始基本数据类型*<em>必须相同 *</em></font></p>
+</li>
+<li><p>编译器会以 *<em>被引用变量 *</em>的值类型作为auto的类型</p>
+</li>
+<li><p>auto会忽略顶层const，同时保留底层const。如果希望 推断出来的auto是一个顶层const，可以用<font color = "yellow"> const auto f = j</font></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>, &amp;r = i;</span><br><span class="line"><span class="keyword">auto</span> a = r;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = i, &amp;cr = ci;<span class="comment">//ci 是常量，cr是对常量的引用</span></span><br><span class="line"><span class="keyword">auto</span> b = ci; <span class="comment">//auto会忽略顶层常量</span></span><br><span class="line"><span class="keyword">auto</span> c = cr; <span class="comment">//同上</span></span><br><span class="line"><span class="keyword">auto</span> d = &amp;i; <span class="comment">//d是指针指向i，是一个整型指针</span></span><br><span class="line"><span class="keyword">auto</span> e = &amp;ci; <span class="comment">//底层const，e是指向常量的指针（pointer to const）</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">auto</span> f = ci;<span class="comment">//强行让拷贝初始化保留顶层const</span></span><br><span class="line"><span class="keyword">auto</span> &amp;g = ci; <span class="comment">//引用一直是底层const，整型常量的引用</span></span><br><span class="line"><span class="keyword">auto</span> &amp;h = <span class="number">42</span>;<span class="comment">//错误，不能为非常量绑定字面值</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">auto</span> &amp;j = <span class="number">42</span>; <span class="comment">//正确， 可以给常量引用绑定字面值</span></span><br><span class="line"><span class="keyword">auto</span> k = ci, &amp;l = i;<span class="comment">//正确，都是普通变量</span></span><br><span class="line"><span class="keyword">auto</span> &amp;m = ci, *p = &amp;ci;<span class="comment">//正确，都是const int</span></span><br><span class="line"><span class="keyword">auto</span> &amp;n = i, *p = ci; <span class="comment">//错误，前者是int *，后者const int *</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+<hr>
+<h2 id="decltype"><a href="#decltype" class="headerlink" title="decltype"></a>decltype</h2><hr>
+<ol>
+<li><p>作用：选择并返回操作数的数据类型。编译器分析表达式的类型，却不实际计算表达式的值。</p>
+</li>
+<li><p>decltype 处理顶层const和引用的方式不同。decltype会返回变量真实的类型（包括顶层const和引用在内）</p>
+</li>
+<li><p>引用从来都是作为其所指对象的同义词出现，只有用在decltype处是一个例外</p>
+</li>
+<li><p>有些表达式能向decltype返回引用类型。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">42</span>, *p = &amp;i, &amp;r = i;</span><br><span class="line"><span class="keyword">decltype</span> (r + <span class="number">0</span>) b =<span class="number">32</span>;</span><br><span class="line"><span class="keyword">decltype</span>(*p) c;<span class="comment">//*p是引用类型，c必须被赋初值</span></span><br><span class="line"><span class="keyword">decltype</span>((i)) d; <span class="comment">//d是一个引用，必须初始化</span></span><br><span class="line"><span class="keyword">decltype</span>(i) e; <span class="comment">//e是一个未初始化的int</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>decltype 的表达式如果是加上了括号的变量，结果是引用。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/12/%E7%AC%AC2%E7%AB%A0%20auto%E5%92%8Cdecltype%E6%80%BB%E7%BB%93/" data-id="ckebbherc00026z2z9t2sd2gn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/02/04/%E7%AC%AC3%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          第3章 字符串和向量和数组
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/12/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">零碎知识</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/26/%E7%AC%AC6%E7%AB%A0%20%E5%87%BD%E6%95%B0%20/">第6章 函数 </a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/26/%E7%AC%AC5%E7%AB%A0%20%E8%AF%AD%E5%8F%A5/">第5章 语句</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/15/%E7%AC%AC4%E7%AB%A0%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/">第4章 表达式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/04/%E7%AC%AC3%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/">第3章 字符串和向量和数组</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/12/%E7%AC%AC2%E7%AB%A0%20auto%E5%92%8Cdecltype%E6%80%BB%E7%BB%93/">第2章 auto和decltype总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

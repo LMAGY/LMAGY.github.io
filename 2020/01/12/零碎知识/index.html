@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>零碎知识 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="零碎知识 复合类型 一个基本数据类型 + 一组声明符（声明符包含类型修饰符 * 和 &amp;）  复杂的指针和引用可以从右向左读，离变量名最近的的类型修饰符对变量的类型产生最直接的影响，声明符的其他部分用以确定r引用的类型是什么  拷贝一个对象的值不会改变他，拷贝完成，新对象与原对象无关  一个文件中给出定义，多个文件中可以声明（用关键字extern，而且不能重复定义）  默认状态下，const">
+<meta property="og:type" content="article">
+<meta property="og:title" content="零碎知识">
+<meta property="og:url" content="http://yoursite.com/2020/01/12/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="零碎知识 复合类型 一个基本数据类型 + 一组声明符（声明符包含类型修饰符 * 和 &amp;）  复杂的指针和引用可以从右向左读，离变量名最近的的类型修饰符对变量的类型产生最直接的影响，声明符的其他部分用以确定r引用的类型是什么  拷贝一个对象的值不会改变他，拷贝完成，新对象与原对象无关  一个文件中给出定义，多个文件中可以声明（用关键字extern，而且不能重复定义）  默认状态下，const">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-12T13:30:59.679Z">
+<meta property="article:modified_time" content="2020-02-04T11:48:12.951Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-零碎知识" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/12/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/" class="article-date">
+  <time datetime="2020-01-12T13:30:59.679Z" itemprop="datePublished">2020-01-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      零碎知识
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="零碎知识"><a href="#零碎知识" class="headerlink" title="零碎知识"></a>零碎知识</h1><hr>
+<h2 id="复合类型"><a href="#复合类型" class="headerlink" title="复合类型"></a>复合类型</h2><ul>
+<li><p>一个基本数据类型 + 一组声明符（声明符包含类型修饰符 * 和 &amp;）</p>
+</li>
+<li><p>复杂的指针和引用可以从右向左读，离变量名最近的的类型修饰符对变量的类型产生最直接的影响，声明符的其他部分用以确定r引用的类型是什么</p>
+</li>
+<li><p>拷贝一个对象的值不会改变他，拷贝完成，新对象与原对象无关</p>
+</li>
+<li><p>一个文件中给出定义，多个文件中可以声明（用关键字extern，而且不能重复定义）</p>
+</li>
+<li><p>默认状态下，<code>const</code> 对象仅在文件内有效（在定义和声明时都用const就可以都有效）</p>
+</li>
+<li><p>引用只能绑定在对象上，不能与某个字面值或表达式的结果绑定，有两个例外</p>
+<p>第一个就是： <code>const int  &amp;r1  = 42;</code>(表达式能转化为引用的类型）</p>
+</li>
+</ul>
+<hr>
+<h2 id="constexpr-和-常量表达式"><a href="#constexpr-和-常量表达式" class="headerlink" title="constexpr  和 常量表达式"></a><code>constexpr</code>  和 常量表达式</h2><ul>
+<li>常量表达式指值不会改变并且在编译过程中就能得到计算结果的表达式，字面值属于常量表达式 。只有本身是常量，且初始值是常量表达式时，才是常量表达式。</li>
+<li>将 变量声明为 <code>constexpr</code>  以便编译器验证变量的值是否是一个常量表达式，声明为 <code>constexpr</code>  的变量一定是常量，必须用常量表达式初始化。 </li>
+<li>总之，常量表达式一定是在编译时就能计算出值的常量，可以用constexpr函数初始化constexpr常量</li>
+<li>constexpr把他所定义的对象置为了顶层const</li>
+<li>如果你认为他是常量就给他定义为constexpr</li>
+</ul>
+<hr>
+<h2 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> * pstring;</span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line"><span class="keyword">using</span> pstring = <span class="keyword">char</span> *;</span><br><span class="line"><span class="keyword">const</span> pstring  cstr = <span class="literal">nullptr</span>; <span class="comment">//cstr 是 const pionter不是pointer to    const，不能把typedef的东西直接带进去</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *  cstr2 = <span class="literal">nullptr</span>;<span class="comment">//与上者完全不同</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="自定义数据结构"><a href="#自定义数据结构" class="headerlink" title="自定义数据结构"></a>自定义数据结构</h2><ol>
+<li><p>注意后面加分号</p>
+</li>
+<li><p>将类定义在头文件中（实现不一定在头文件中），使用头文件保护符避免重复导入</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面说明头文件包回复</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> NN</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NN</span></span><br><span class="line"><span class="comment">//在此处定义头文件中的内容</span></span><br><span class="line"><span class="comment">//......</span></span><br><span class="line"><span class="comment">//......</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="comment">//这种方式确定头文件不会被重复导入</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/12/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/" data-id="ckebbhern00066z2z2oof906i" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/12/%E7%AC%AC2%E7%AB%A0%20auto%E5%92%8Cdecltype%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          第2章 auto和decltype总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/12/%E7%AC%AC2%E7%AB%A0%20const%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">第2章 const总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/26/%E7%AC%AC6%E7%AB%A0%20%E5%87%BD%E6%95%B0%20/">第6章 函数 </a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/26/%E7%AC%AC5%E7%AB%A0%20%E8%AF%AD%E5%8F%A5/">第5章 语句</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/15/%E7%AC%AC4%E7%AB%A0%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/">第4章 表达式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/04/%E7%AC%AC3%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/">第3章 字符串和向量和数组</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/12/%E7%AC%AC2%E7%AB%A0%20auto%E5%92%8Cdecltype%E6%80%BB%E7%BB%93/">第2章 auto和decltype总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
