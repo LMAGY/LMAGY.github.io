@@ -5,7 +5,7 @@
     <url>/post/f4697f57/</url>
     <content><![CDATA[<h1 id="Monocular-Human-Pose-Estimation-A-Survey-of-Deep-Learning-based-Methods"><a href="#Monocular-Human-Pose-Estimation-A-Survey-of-Deep-Learning-based-Methods" class="headerlink" title="Monocular Human Pose Estimation: A Survey of Deep Learning-based Methods"></a>Monocular Human Pose Estimation: A Survey of Deep Learning-based Methods</h1><h2 id="HPE-类别"><a href="#HPE-类别" class="headerlink" title="HPE 类别"></a>HPE 类别</h2><ol>
 <li>generative（human body model-based)：<br>人体模型结构作为先验，几何上从不同视角投影到二位或三维空间，高维参数空间用回归的方式优化</li>
-<li>discriminative (human body model-free)<br>从输入源直接学习一个映射，或者搜索现有案例(不用人体模型)；更快但是对没有训练过的姿态健壮性不足</li>
+<li>discriminative (human body model-free)<br>从输入源直接学习一个映射，或者搜索现有案例(不用人体模型)；更快但是对没有训练过的姿态健壮性不足<span id="more"></span></li>
 </ol>
 <hr>
 <p>多人pose estimation</p>
@@ -161,7 +161,7 @@
 <li>用<code>TransformPhysucalPointToIndex(point,pixelIndex)</code>将point点坐标映射到Index上</li>
 </ol>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//将点坐标转化为Index</span></span><br><span class="line"><span class="keyword">typedef</span> itk::Point&lt; <span class="keyword">double</span>, ImageType::ImageDimension &gt; PointType;</span><br><span class="line">pintType piont = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">ImageType::IndexType pixelIndex;</span><br><span class="line"><span class="keyword">bool</span> isInside = image-&gt;<span class="built_in">TransformPhysicalPointToIndex</span>( point, pixelIndex ); <span class="keyword">if</span> ( isInside ) &#123;</span><br><span class="line">ImageType::PixelType pixelValue = image-&gt;<span class="built_in">GetPixel</span>( pixelIndex ); pixelValue += <span class="number">5</span>; image-&gt;<span class="built_in">SetPixel</span>( pixelIndex, pixelValue ); &#125;</span><br></pre></td></tr></table></figure>
-
+<span id="more"></span>
 <ol start="2">
 <li>从缓冲获得图片  </li>
 </ol>
