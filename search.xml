@@ -142,7 +142,8 @@
   <entry>
     <title>test</title>
     <url>/post/d87f7e0c/</url>
-    <content><![CDATA[<p><img src="/post/d87f7e0c/background.png" alt="background"></p>
+    <content><![CDATA[<span id="more"></span>
+<p><img src="/post/d87f7e0c/background.png" alt="background"></p>
 ]]></content>
   </entry>
   <entry>
