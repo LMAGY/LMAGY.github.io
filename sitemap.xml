@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://yoursite.com/post/f4697f57/</loc>
+    
+    <lastmod>2021-03-29</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/post/d87f7e0c/</loc>
+    
+    <lastmod>2021-03-29</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/post/f8b294b7/</loc>
+    
+    <lastmod>2021-03-29</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/post/4f46e11/</loc>
+    
+    <lastmod>2021-03-21</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/index.html</loc>
+    
+    <lastmod>2021-03-21</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/categories/index.html</loc>
+    
+    <lastmod>2021-03-21</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2021-03-21</lastmod>
+    
+  </url>
+  
+
+  <url>
+    <loc>http://yoursite.com/</loc>
+    <lastmod>2021-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>http://yoursite.com/tags/deep-learning/</loc>
+    <lastmod>2021-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/CV/</loc>
+    <lastmod>2021-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/python/</loc>
+    <lastmod>2021-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/survey/</loc>
+    <lastmod>2021-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2021-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/hexo/</loc>
+    <lastmod>2021-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/Itk/</loc>
+    <lastmod>2021-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2021-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>http://yoursite.com/categories/HPE/</loc>
+    <lastmod>2021-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/categories/web%E5%89%8D%E7%AB%AF/</loc>
+    <lastmod>2021-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/categories/C/</loc>
+    <lastmod>2021-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+</urlset>
