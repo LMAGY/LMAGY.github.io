@@ -219,7 +219,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-03-29 15:50:55 / 修改时间：16:02:53" itemprop="dateCreated datePublished" datetime="2021-03-29T15:50:55+08:00">2021-03-29</time>
+              <time title="创建时间：2021-03-29 15:50:55 / 修改时间：16:05:39" itemprop="dateCreated datePublished" datetime="2021-03-29T15:50:55+08:00">2021-03-29</time>
             </span>
 
           
@@ -242,7 +242,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>14</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -275,9 +275,15 @@
           </div>
         
         <!-- 自定义摘要描述结束 -->
-          <span id="more"></span>
-<p><img src="/post/d87f7e0c/background.png" alt="background"></p>
-
+          <p>这是一个简单的测试，说明问题</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/d87f7e0c/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -822,6 +828,32 @@
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
+<!-- 暗黑模式 -->
+<i id="darkmode" class="fa fa-lightbulb-o" aria-hidden="true"></i>
+<script>
+// 依次判断 系统暗黑模式  缓存 dark
+var body = $("body")
+var darkmode = $("#darkmode")
+if (matchMedia("(prefers-color-scheme: dark)").matches ||localStorage.getItem("darkmode") === "1") {
+	if (!(localStorage.getItem("noDark") === "1")) {
+		body.addClass("dark")
+	}
+}
+body.hasClass("dark")?darkmode.removeClass("fa-moon-o").addClass("fa-lightbulb-o"):darkmode.removeClass("fa-lightbulb-o").addClass("fa-moon-o")
+darkmode.click(function () {
+	if (body.hasClass("dark")) {
+	darkmode.removeClass("fa-lightbulb-o").addClass("fa-moon-o")
+	body.removeClass("dark")
+	localStorage.setItem("darkmode", "0")
+		localStorage.setItem("noDark", "1")
+	} else {
+		darkmode.removeClass("fa-moon-o").addClass("fa-lightbulb-o")
+		body.addClass("dark")
+		localStorage.setItem("darkmode", "1")
+		localStorage.setItem("noDark", "0")
+	}
+})
+</script>
 
 <script src="/js/utils.js"></script>
 

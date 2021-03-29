@@ -522,6 +522,32 @@
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
+<!-- 暗黑模式 -->
+<i id="darkmode" class="fa fa-lightbulb-o" aria-hidden="true"></i>
+<script>
+// 依次判断 系统暗黑模式  缓存 dark
+var body = $("body")
+var darkmode = $("#darkmode")
+if (matchMedia("(prefers-color-scheme: dark)").matches ||localStorage.getItem("darkmode") === "1") {
+	if (!(localStorage.getItem("noDark") === "1")) {
+		body.addClass("dark")
+	}
+}
+body.hasClass("dark")?darkmode.removeClass("fa-moon-o").addClass("fa-lightbulb-o"):darkmode.removeClass("fa-lightbulb-o").addClass("fa-moon-o")
+darkmode.click(function () {
+	if (body.hasClass("dark")) {
+	darkmode.removeClass("fa-lightbulb-o").addClass("fa-moon-o")
+	body.removeClass("dark")
+	localStorage.setItem("darkmode", "0")
+		localStorage.setItem("noDark", "1")
+	} else {
+		darkmode.removeClass("fa-moon-o").addClass("fa-lightbulb-o")
+		body.addClass("dark")
+		localStorage.setItem("darkmode", "1")
+		localStorage.setItem("noDark", "0")
+	}
+})
+</script>
 
 <script src="/js/utils.js"></script>
 
