@@ -25,7 +25,7 @@
     --card-bg-color: #555;
     --text-color: #ccc;
     --blockquote-color: #bbb;
-    --link-color: #ccc;
+    --link-color: #d48484;
     --link-hover-color: #eee;
     --brand-color: #ddd;
     --brand-hover-color: #ddd;
@@ -40,7 +40,7 @@
     --btn-default-hover-border-color: #666;
   }
   img {
-    opacity: 0.75;
+    opacity: 0.85;
   }
   img:hover {
     opacity: 0.9;
@@ -1277,7 +1277,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #33c2f2;
+  background: #f0a31d;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1952,6 +1952,9 @@ pre .javascript .function {
   .post-meta-item-icon {
     display: inline-block;
   }
+}
+.post-meta-item-text {
+  display: none;
 }
 @media (max-width: 991px) {
   .post-meta-item-text {
@@ -2810,16 +2813,12 @@ body {
   -o-background-size: cover;
   -moz-background-size: cover;
   -ms-background-size: cover;
-  opacity: 0.9;
-}
-body footer > div > div {
-  color: #000;
 }
 .content-wrap {
   opacity: 0.9;
 }
 .sidebar {
-  opacity: 0.9;
+  opacity: 0.99;
 }
 .header-inner {
   background: rgba(255,255,255,0.9);
@@ -2930,4 +2929,15 @@ body footer > div > div {
 code {
   background: #555;
   color: #fff;
+}
+.back-to-top:hover {
+  color: #555;
+}
+.sidebar-toggle:hover .toggle-line {
+  background: #fff;
+}
+sidebar p,
+sidebar span,
+sidebar a {
+  color: #ffb6c1;
 }
