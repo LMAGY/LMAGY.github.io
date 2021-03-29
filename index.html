@@ -219,7 +219,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-03-29 14:02:44 / 修改时间：14:10:08" itemprop="dateCreated datePublished" datetime="2021-03-29T14:02:44+08:00">2021-03-29</time>
+              <time title="创建时间：2021-03-29 14:02:44 / 修改时间：14:13:21" itemprop="dateCreated datePublished" datetime="2021-03-29T14:02:44+08:00">2021-03-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -270,9 +270,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>#Monocular Human Pose Estimation: A Survey of Deep Learning-based Methods</p>
-<p>##HPE 类别</p>
-<ol>
+          <h1 id="Monocular-Human-Pose-Estimation-A-Survey-of-Deep-Learning-based-Methods"><a href="#Monocular-Human-Pose-Estimation-A-Survey-of-Deep-Learning-based-Methods" class="headerlink" title="Monocular Human Pose Estimation: A Survey of Deep Learning-based Methods"></a>Monocular Human Pose Estimation: A Survey of Deep Learning-based Methods</h1><h2 id="HPE-类别"><a href="#HPE-类别" class="headerlink" title="HPE 类别"></a>HPE 类别</h2><ol>
 <li>generative（human body model-based)：<br>人体模型结构作为先验，几何上从不同视角投影到二位或三维空间，高维参数空间用回归的方式优化</li>
 <li>discriminative (human body model-free)<br>从输入源直接学习一个映射，或者搜索现有案例(不用人体模型)；更快但是对没有训练过的姿态健壮性不足</li>
 </ol>
@@ -318,16 +316,14 @@
 </li>
 </ol>
 <hr>
-<p>##2D人体姿态估计</p>
-<h3 id="2D单人姿态估计"><a href="#2D单人姿态估计" class="headerlink" title="2D单人姿态估计"></a>2D单人姿态估计</h3><ol>
+<h2 id="2D人体姿态估计"><a href="#2D人体姿态估计" class="headerlink" title="2D人体姿态估计"></a>2D人体姿态估计</h2><h3 id="2D单人姿态估计"><a href="#2D单人姿态估计" class="headerlink" title="2D单人姿态估计"></a>2D单人姿态估计</h3><ol>
 <li>先检测出单人，依据标注的人的中心位置和身体比例从原始图像中剪裁</li>
 <li>regression-based 方法通过一个端到端的框架直接学习和预测坐标位置</li>
 <li>detection-based方法先通过学习关节的或身体部位的矩形框，或者热图(每个都通过一个一关节位置为中心的2D高斯分布来显式一个关节位置)预测出身体部位的大致位置，再进行回归</li>
 <li>Soft-argmax函数能将热图转化为关节坐标；将一个dectection-based网络变成一个可微分的回归网络</li>
 </ol>
 <h4 id="Regression-based-methods"><a href="#Regression-based-methods" class="headerlink" title="Regression-based methods"></a>Regression-based methods</h4><p>直接回归出坐标，缺点太多</p>
-<p>####Detection-based methods</p>
-<p>每个关节占据一个热图通道用一个一目标关节位置为中心的2D高斯分布</p>
+<h4 id="Detection-based-methods"><a href="#Detection-based-methods" class="headerlink" title="Detection-based methods"></a>Detection-based methods</h4><p>每个关节占据一个热图通道用一个一目标关节位置为中心的2D高斯分布</p>
 <p>因为热图表示比坐标表示更有鲁棒性，大部分最近的研究都基于热图表示</p>
 <p>有大量的工作在做这个方向</p>
 <hr>

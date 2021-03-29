@@ -21,15 +21,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="#Monocular Human Pose Estimation: A Survey of Deep Learning-based Methods ##HPE 类别  generative（human body model-based)：人体模型结构作为先验，几何上从不同视角投影到二位或三维空间，高维参数空间用回归的方式优化 discriminative (human body model-fre">
+  <meta name="description" content="Monocular Human Pose Estimation: A Survey of Deep Learning-based MethodsHPE 类别 generative（human body model-based)：人体模型结构作为先验，几何上从不同视角投影到二位或三维空间，高维参数空间用回归的方式优化 discriminative (human body model-free)从输入">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HPE综述">
 <meta property="og:url" content="http://yoursite.com/post/f4697f57/index.html">
 <meta property="og:site_name" content="LMAGY的博客">
-<meta property="og:description" content="#Monocular Human Pose Estimation: A Survey of Deep Learning-based Methods ##HPE 类别  generative（human body model-based)：人体模型结构作为先验，几何上从不同视角投影到二位或三维空间，高维参数空间用回归的方式优化 discriminative (human body model-fre">
+<meta property="og:description" content="Monocular Human Pose Estimation: A Survey of Deep Learning-based MethodsHPE 类别 generative（human body model-based)：人体模型结构作为先验，几何上从不同视角投影到二位或三维空间，高维参数空间用回归的方式优化 discriminative (human body model-free)从输入">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-29T06:02:44.000Z">
-<meta property="article:modified_time" content="2021-03-29T06:10:08.479Z">
+<meta property="article:modified_time" content="2021-03-29T06:13:21.911Z">
 <meta property="article:author" content="LMAGY">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="CV">
@@ -224,7 +224,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-03-29 14:02:44 / 修改时间：14:10:08" itemprop="dateCreated datePublished" datetime="2021-03-29T14:02:44+08:00">2021-03-29</time>
+              <time title="创建时间：2021-03-29 14:02:44 / 修改时间：14:13:21" itemprop="dateCreated datePublished" datetime="2021-03-29T14:02:44+08:00">2021-03-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -282,9 +282,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>#Monocular Human Pose Estimation: A Survey of Deep Learning-based Methods</p>
-<p>##HPE 类别</p>
-<ol>
+        <h1 id="Monocular-Human-Pose-Estimation-A-Survey-of-Deep-Learning-based-Methods"><a href="#Monocular-Human-Pose-Estimation-A-Survey-of-Deep-Learning-based-Methods" class="headerlink" title="Monocular Human Pose Estimation: A Survey of Deep Learning-based Methods"></a>Monocular Human Pose Estimation: A Survey of Deep Learning-based Methods</h1><h2 id="HPE-类别"><a href="#HPE-类别" class="headerlink" title="HPE 类别"></a>HPE 类别</h2><ol>
 <li>generative（human body model-based)：<br>人体模型结构作为先验，几何上从不同视角投影到二位或三维空间，高维参数空间用回归的方式优化</li>
 <li>discriminative (human body model-free)<br>从输入源直接学习一个映射，或者搜索现有案例(不用人体模型)；更快但是对没有训练过的姿态健壮性不足</li>
 </ol>
@@ -330,16 +328,14 @@
 </li>
 </ol>
 <hr>
-<p>##2D人体姿态估计</p>
-<h3 id="2D单人姿态估计"><a href="#2D单人姿态估计" class="headerlink" title="2D单人姿态估计"></a>2D单人姿态估计</h3><ol>
+<h2 id="2D人体姿态估计"><a href="#2D人体姿态估计" class="headerlink" title="2D人体姿态估计"></a>2D人体姿态估计</h2><h3 id="2D单人姿态估计"><a href="#2D单人姿态估计" class="headerlink" title="2D单人姿态估计"></a>2D单人姿态估计</h3><ol>
 <li>先检测出单人，依据标注的人的中心位置和身体比例从原始图像中剪裁</li>
 <li>regression-based 方法通过一个端到端的框架直接学习和预测坐标位置</li>
 <li>detection-based方法先通过学习关节的或身体部位的矩形框，或者热图(每个都通过一个一关节位置为中心的2D高斯分布来显式一个关节位置)预测出身体部位的大致位置，再进行回归</li>
 <li>Soft-argmax函数能将热图转化为关节坐标；将一个dectection-based网络变成一个可微分的回归网络</li>
 </ol>
 <h4 id="Regression-based-methods"><a href="#Regression-based-methods" class="headerlink" title="Regression-based methods"></a>Regression-based methods</h4><p>直接回归出坐标，缺点太多</p>
-<p>####Detection-based methods</p>
-<p>每个关节占据一个热图通道用一个一目标关节位置为中心的2D高斯分布</p>
+<h4 id="Detection-based-methods"><a href="#Detection-based-methods" class="headerlink" title="Detection-based methods"></a>Detection-based methods</h4><p>每个关节占据一个热图通道用一个一目标关节位置为中心的2D高斯分布</p>
 <p>因为热图表示比坐标表示更有鲁棒性，大部分最近的研究都基于热图表示</p>
 <p>有大量的工作在做这个方向</p>
 <hr>
@@ -513,7 +509,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%BA%E4%BD%93%E6%A8%A1%E5%9E%8B"><span class="nav-text">人体模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2D%E5%8D%95%E4%BA%BA%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1"><span class="nav-text">2D单人姿态估计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Regression-based-methods"><span class="nav-text">Regression-based methods</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2D%E5%A4%9A%E4%BA%BA%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1"><span class="nav-text">2D多人姿态估计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Top-down-methods"><span class="nav-text">Top-down methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bottom-up-methods"><span class="nav-text">Bottom-up methods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3D%E4%BA%BA%E4%BD%93%E5%A7%BF%E6%80%81%E4%BC%B0"><span class="nav-text">3D人体姿态估</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#model-free-methods"><span class="nav-text">model-free methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-based-methods"><span class="nav-text">Model-based methods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3D%E5%A4%9A%E4%BA%BA%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1"><span class="nav-text">3D多人姿态估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87"><span class="nav-text">数据集和评估指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2D%E4%BA%BA%E4%BD%93%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-text">2D人体姿态估计数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2D%E4%BA%BA%E4%BD%93%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="nav-text">2D人体姿态估计评价指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3D%E4%BA%BA%E4%BD%93%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-text">3D人体姿态估计数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3D%E4%BA%BA%E4%BD%93%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1%E7%9A%84%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="nav-text">3D人体姿态估计的评价指标</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Monocular-Human-Pose-Estimation-A-Survey-of-Deep-Learning-based-Methods"><span class="nav-text">Monocular Human Pose Estimation: A Survey of Deep Learning-based Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HPE-%E7%B1%BB%E5%88%AB"><span class="nav-text">HPE 类别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%BA%E4%BD%93%E6%A8%A1%E5%9E%8B"><span class="nav-text">人体模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2D%E4%BA%BA%E4%BD%93%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1"><span class="nav-text">2D人体姿态估计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2D%E5%8D%95%E4%BA%BA%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1"><span class="nav-text">2D单人姿态估计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Regression-based-methods"><span class="nav-text">Regression-based methods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Detection-based-methods"><span class="nav-text">Detection-based methods</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2D%E5%A4%9A%E4%BA%BA%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1"><span class="nav-text">2D多人姿态估计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Top-down-methods"><span class="nav-text">Top-down methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bottom-up-methods"><span class="nav-text">Bottom-up methods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3D%E4%BA%BA%E4%BD%93%E5%A7%BF%E6%80%81%E4%BC%B0"><span class="nav-text">3D人体姿态估</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#model-free-methods"><span class="nav-text">model-free methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-based-methods"><span class="nav-text">Model-based methods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3D%E5%A4%9A%E4%BA%BA%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1"><span class="nav-text">3D多人姿态估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87"><span class="nav-text">数据集和评估指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2D%E4%BA%BA%E4%BD%93%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-text">2D人体姿态估计数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2D%E4%BA%BA%E4%BD%93%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="nav-text">2D人体姿态估计评价指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3D%E4%BA%BA%E4%BD%93%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-text">3D人体姿态估计数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3D%E4%BA%BA%E4%BD%93%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1%E7%9A%84%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="nav-text">3D人体姿态估计的评价指标</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
