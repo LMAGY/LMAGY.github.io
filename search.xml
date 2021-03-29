@@ -57,4 +57,147 @@
         <tag>医学图像处理</tag>
       </tags>
   </entry>
+  <entry>
+    <title>HPE综述</title>
+    <url>/post/f4697f57/</url>
+    <content><![CDATA[<p>#Monocular Human Pose Estimation: A Survey of Deep Learning-based Methods</p>
+<p>##HPE 类别</p>
+<ol>
+<li>generative（human body model-based)：<br>人体模型结构作为先验，几何上从不同视角投影到二位或三维空间，高维参数空间用回归的方式优化</li>
+<li>discriminative (human body model-free)<br>从输入源直接学习一个映射，或者搜索现有案例(不用人体模型)；更快但是对没有训练过的姿态健壮性不足</li>
+</ol>
+<hr>
+<p>多人pose estimation</p>
+<ol>
+<li><p>top-down<br>先探测人，产生位置的bounding box</p>
+</li>
+<li><p>bottom-up</p>
+<p>先预测每个人所有的身体部位，再用人体模型拟合或者其他算法进行分组</p>
+<p>当人变多时top-down计算花费明显提高，但如果有大规模的重叠，bottom-up方法在重组肢体上可能会遇到问题</p>
+</li>
+</ol>
+<hr>
+<ol>
+<li><p>regression-based<br>直接从输入图片map关节坐标，或则得到人体模型参数</p>
+</li>
+<li><p>dectection-based(中间生成关节位置图像块或热图)   </p>
+<p>将身体部位当作探测目标依据两个经常使用概念：关节部位的图像块和热图</p>
+<p>小区域表示鲁棒性更强；小区域的检测结果限制了最终关节坐标的精度</p>
+</li>
+</ol>
+<hr>
+<ol>
+<li><p>one-stage</p>
+</li>
+<li><p>multi-stage</p>
+<p>有中间监督；例如先检测人的位置再顾及人体姿势</p>
+<p>3D的HPE先在2d表面预测关节位置再将它们拓展到3D空间</p>
+</li>
+</ol>
+<h3 id="人体模型"><a href="#人体模型" class="headerlink" title="人体模型"></a>人体模型</h3><p>一个成熟的人体模型不必包含所有身体特征，但是需要满足构建和描述人体姿势的特殊任务的需求</p>
+<ol>
+<li><p>骨架模型</p>
+<p>代表一系列的关节位置和相应的遵从人体骨架结构的肢体方向</p>
+<p>也可以描述为一个图，顶点代表关节，用边代表骨架结构中关节的链接和约束</p>
+</li>
+<li><p>轮廓模型</p>
+<p>早期用的比较多</p>
+</li>
+<li><p>体模型</p>
+<p>早期是圆锥圆柱，现在都用mesh</p>
+</li>
+</ol>
+<hr>
+<p>##2D人体姿态估计</p>
+<h3 id="2D单人姿态估计"><a href="#2D单人姿态估计" class="headerlink" title="2D单人姿态估计"></a>2D单人姿态估计</h3><ol>
+<li>先检测出单人，依据标注的人的中心位置和身体比例从原始图像中剪裁</li>
+<li>regression-based 方法通过一个端到端的框架直接学习和预测坐标位置</li>
+<li>detection-based方法先通过学习关节的或身体部位的矩形框，或者热图(每个都通过一个一关节位置为中心的2D高斯分布来显式一个关节位置)预测出身体部位的大致位置，再进行回归</li>
+<li>Soft-argmax函数能将热图转化为关节坐标；将一个dectection-based网络变成一个可微分的回归网络</li>
+</ol>
+<h4 id="Regression-based-methods"><a href="#Regression-based-methods" class="headerlink" title="Regression-based methods"></a>Regression-based methods</h4><p>直接回归出坐标，缺点太多</p>
+<p>####Detection-based methods</p>
+<p>每个关节占据一个热图通道用一个一目标关节位置为中心的2D高斯分布</p>
+<p>因为热图表示比坐标表示更有鲁棒性，大部分最近的研究都基于热图表示</p>
+<p>有大量的工作在做这个方向</p>
+<hr>
+<h2 id="2D多人姿态估计"><a href="#2D多人姿态估计" class="headerlink" title="2D多人姿态估计"></a>2D多人姿态估计</h2><p>需要同时进行detection和localization</p>
+<h3 id="Top-down-methods"><a href="#Top-down-methods" class="headerlink" title="Top-down methods"></a>Top-down methods</h3><p>效果依赖人体目标检测的结果，速度较慢，大都是非实时的</p>
+<h3 id="Bottom-up-methods"><a href="#Bottom-up-methods" class="headerlink" title="Bottom-up methods"></a>Bottom-up methods</h3><p>需要进行joint dection和joint candiate grouping</p>
+<p>速度快，但是容易收到复杂背景和人体遮挡的影响</p>
+<p>stoa是top-down但是速度慢</p>
+<hr>
+<h2 id="3D人体姿态估"><a href="#3D人体姿态估" class="headerlink" title="3D人体姿态估"></a>3D人体姿态估</h2><p>单眼相机应用非常广泛，深度神经网络有能力预测dense depth和sparse depth points</p>
+<h3 id="model-free-methods"><a href="#model-free-methods" class="headerlink" title="model-free methods"></a>model-free methods</h3><ol>
+<li>直接将图片映射到3D位置</li>
+<li>从预测的2D姿态上接着预测深度信息</li>
+</ol>
+<h3 id="Model-based-methods"><a href="#Model-based-methods" class="headerlink" title="Model-based methods"></a>Model-based methods</h3><ol>
+<li>有很多工作基于SMPL(一个人体模型)，估计人体3D参数</li>
+<li>运动学模型的运用也很广泛</li>
+<li>还有自监督学习（可以研究的一个方向)</li>
+<li>latent 3D pose model</li>
+</ol>
+<hr>
+<h2 id="3D多人姿态估计"><a href="#3D多人姿态估计" class="headerlink" title="3D多人姿态估计"></a>3D多人姿态估计</h2><ol>
+<li>研究方向很新工作较少</li>
+<li>大都是多阶段</li>
+</ol>
+<hr>
+<h2 id="数据集和评估指标"><a href="#数据集和评估指标" class="headerlink" title="数据集和评估指标"></a>数据集和评估指标</h2><h3 id="2D人体姿态估计数据集"><a href="#2D人体姿态估计数据集" class="headerlink" title="2D人体姿态估计数据集"></a>2D人体姿态估计数据集</h3><ol>
+<li>FILC</li>
+<li>LSP</li>
+<li>MPII</li>
+<li>COCO</li>
+<li>AIC-HKD</li>
+<li>Penn Action</li>
+<li>J-HMDB</li>
+<li>PoseTrack</li>
+</ol>
+<h3 id="2D人体姿态估计评价指标"><a href="#2D人体姿态估计评价指标" class="headerlink" title="2D人体姿态估计评价指标"></a>2D人体姿态估计评价指标</h3><ol>
+<li><p>Percentage of Correct Parts(PCP)</p>
+</li>
+<li><p>Percentage of Correct Keypoints(PCK)</p>
+</li>
+<li><p>AP</p>
+<p>每个点是单独算precision的，最后算所有点的平均</p>
+</li>
+<li><p>GFLOPs(速度)</p>
+</li>
+</ol>
+<hr>
+<h3 id="3D人体姿态估计数据集"><a href="#3D人体姿态估计数据集" class="headerlink" title="3D人体姿态估计数据集"></a>3D人体姿态估计数据集</h3><ol>
+<li><p>HumanEva-I&amp;IIDatasets</p>
+<p>有采集的3D坐标</p>
+</li>
+<li><p>Human3.6Mdataset</p>
+</li>
+<li><p>TNT15 Dataset</p>
+</li>
+<li><p>MPI-INF-3DHP</p>
+</li>
+<li><p>TotalCapture Dataset</p>
+</li>
+<li><p>MARCOnI Dataset(乱)</p>
+</li>
+<li><p>Panoptic Dataset</p>
+</li>
+<li><p>3DPW Dataset</p>
+</li>
+</ol>
+<h3 id="3D人体姿态估计的评价指标"><a href="#3D人体姿态估计的评价指标" class="headerlink" title="3D人体姿态估计的评价指标"></a>3D人体姿态估计的评价指标</h3><ol>
+<li>Mean Per Joint Positon Error(MPJPE)</li>
+<li>PCK和AUC</li>
+</ol>
+]]></content>
+      <categories>
+        <category>HPE</category>
+      </categories>
+      <tags>
+        <tag>deep learning</tag>
+        <tag>CV</tag>
+        <tag>python</tag>
+        <tag>survey</tag>
+      </tags>
+  </entry>
 </search>
