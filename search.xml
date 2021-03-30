@@ -162,6 +162,186 @@
       </tags>
   </entry>
   <entry>
+    <title>重载运算与类型转换</title>
+    <url>/post/undefined/</url>
+    <content><![CDATA[<h3 id="14-1基本概念"><a href="#14-1基本概念" class="headerlink" title="14.1基本概念"></a><span id="more"></span>14.1基本概念</h3><ol>
+<li><p>当一个重载的运算符是成员函数时，this绑定到左侧运算对象。成员运算符函数的参数数量比运算对象的数量少一个。</p>
+</li>
+<li><p>当重载的运算符不是成员函数时，首先他不能定义两个内置类型，其参数和运算对象一样多</p>
+</li>
+<li><p>复习：逗号表达式先对左侧求值，然后把结果扔掉，返回右侧表达式的值，若右侧表达式是左值，最终的求值结果也是左值</p>
+</li>
+<li><p>我们可以将运算符作用于类型正确的实参，从而间接方式“调用”重载的运算符函数；也可以像调用普通函数一样直接调用运算符函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">data1 + data2;</span><br><span class="line"><span class="keyword">operator</span>+(data1,data2); <span class="comment">//这两种方法等价</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>因为&amp;&amp; ||的短路求值属性，和逗号运算符的求值顺序无法保留下来，因此我们不建议重载他们</p>
+</li>
+<li><p>不重载逗号运算符和取址运算符的另外一个原因是，C++已经规定了他们作用于类类型对象时的含义；因为有了内置含义，所以一般来说他们不应该被重载</p>
+</li>
+<li><p>应该使用与内置类型一致的含义</p>
+</li>
+<li><p>逻辑运算和关系运算应该返回bool，算数运算符应该返回一个类类型的值，赋值运算符和复合运算符应该返回左侧运算对象的引用</p>
+</li>
+<li><p>只有当操作的含义对于用户来说清晰明了时才使用运算符</p>
+</li>
+<li><p>如果类由算数运算符或者位运算符，最好也提供对应的复合赋值运算，比如有+最好同时定义+=</p>
+</li>
+<li><p>运算符可以作为类的成员函数，也可以声明为一个普通的非成员函数</p>
+<ul>
+<li>赋值(= ),下标([ ]),调用(( ))和成员访问箭头(-&gt;)必须是成员</li>
+<li>复合赋值运算符一般来说应该是成员，但并非必须，这一点与赋值运算符略有不同</li>
+<li>改变对象状态的运算符或者给定类型密切相关的运算符，如递增，递减和解引用运算符，通常应该是成员</li>
+<li>具有对称性的运算符可能转换任意一端的运算对象，例如算数,相等性，关系和位运算符等，因此他们通常应该是普通的非成员函数</li>
+</ul>
+</li>
+<li><p>如果我们提供含有类对象的混合类型表达式，则运算符必须定义为非成员函数</p>
+</li>
+<li><p>对一个运算符函数来说，它或者是类的成员，或者至少含有一个类类型的参数</p>
+</li>
+</ol>
+<h3 id="14-2输入和输出运算符"><a href="#14-2输入和输出运算符" class="headerlink" title="14.2输入和输出运算符"></a>14.2输入和输出运算符</h3><ol>
+<li>通常，输出运算符应该主要负责打印对象的内容而非控制格式，输出运算符不应该打印换行符</li>
+<li>如果我们希望为类自定义IO运算符，则<strong>必须将其定义为非成员函数</strong>，且应该声明为友元</li>
+<li>输入运算符必须处理输入可能失败的情况，而输出运算符不需要</li>
+<li>当读取操作发生错误时，输入运算符应该负责从错误中恢复</li>
+<li>我们可以用io库的那些failbit，eofbit，和badbit来获取流的状态（P279）</li>
+<li>eof( )表示流到末尾，bad()表示流损坏，二者都会导致fail为true</li>
+</ol>
+<h3 id="14-3-算数和关系运算符"><a href="#14-3-算数和关系运算符" class="headerlink" title="14.3 算数和关系运算符"></a>14.3 算数和关系运算符</h3><ol>
+<li><p>如果类定义了算数运算符，则他一般也会定义一个对应的复合赋值运算符</p>
+</li>
+<li><p>如果同时定义了算数运算符和相关的复合赋值运算符，则通常情况下应该使用复合赋值运算符来实现算数运算符</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Sale_data <span class="keyword">operator</span>+(<span class="keyword">const</span> Sale_data &amp;lhs,<span class="keyword">const</span> Sale_data &amp;rhs)&#123;</span><br><span class="line">    Sales_data sum = lhs;<span class="comment">//</span></span><br><span class="line">    sum += rhs; <span class="comment">//调用复合赋值运算符</span></span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果一个类定义了operator==，则这个类也应该定义operator!=;我们只让其中一个工作，另外一个则调用真正工作的运算符 <code>return !(rhs==lhs);</code>这种就可以</p>
+</li>
+</ol>
+<h3 id="14-4赋值运算符"><a href="#14-4赋值运算符" class="headerlink" title="14.4赋值运算符"></a>14.4赋值运算符</h3><ol>
+<li><p>除了拷贝赋值和移动赋值运算符外，类还可以定义其他赋值运算符以使用别的类型作为右侧运算对象</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StrVec</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	StrVec &amp;<span class="keyword">operator</span>=(initializer_list&lt;string&gt;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>无论形参类型是什么，<strong>赋值运算符都必须定义为成员函数</strong></p>
+</li>
+<li><p>复合赋值运算符不非是类的成员，但我们倾向与把包括复合赋值在内的所有赋值运算都定义在类的内部，返回其左侧对象的引用</p>
+</li>
+<li><p>注意赋值运算符完成构造和析构两个过程</p>
+</li>
+</ol>
+<h3 id="14-5下标运算符"><a href="#14-5下标运算符" class="headerlink" title="14.5下标运算符"></a>14.5下标运算符</h3><ol>
+<li>如果一个类包含下标运算符，则它通常会定义两个版本：一个返回普通引用，另一个是类的常量成员并且返回常量引用<code>string &amp; operator[](size_t n);</code>和<code>const string&amp; operator[](size_t n) const</code></li>
+</ol>
+<h3 id="14-6递增和递减运算符"><a href="#14-6递增和递减运算符" class="headerlink" title="14.6递增和递减运算符"></a>14.6递增和递减运算符</h3><ol>
+<li><p>因为他们改变的是类的成员，所以建议将其设定为成员函数</p>
+</li>
+<li><p>应该同时定义前置版本和后置版本</p>
+</li>
+<li><p>后置的版本接受一个额外的（不被使用）的int类型的形参，编译器会默认给它实参0；我们不会使用这个形参，其唯一的作用就是区分前置版本和后置版本的函数，而不是要真的实现后置版本时参与计算</p>
+</li>
+<li><p>后置运算符返回对象的原值，返回的是值而非引用（需要先保存原来的值，再在最后返回），再将原对象进行++操作，调用前置版本的++</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">StrBlobPtr StrBlobPtr::<span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;</span><br><span class="line">    StrBlobPtr ret = *<span class="keyword">this</span>;       <span class="comment">//记录当前的值</span></span><br><span class="line">    ++*<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">return</span> ret; <span class="comment">//返回之前记录的状态</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="5">
+<li>如果显示调用后置版本的++,我们必须给它一个int以区分前置版本的 ++</li>
+</ol>
+<h3 id="14-7成员访问运算符"><a href="#14-7成员访问运算符" class="headerlink" title="14.7成员访问运算符"></a>14.7成员访问运算符</h3><ol>
+<li><p>箭头运算符不执行任何自己的操作，而是调用解引用运算符并返回解引用结果元素的地址</p>
+</li>
+<li><p>可以将箭头运算符理解为如下 形式</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">point.<span class="keyword">operator</span>-&gt;()-&gt;mem;<span class="comment">//注意这可能是一个套娃，因为point.operator-&gt;()返回的也可能是一个</span></span><br><span class="line"><span class="comment">//类(指针类）的对象，碰到了-&gt;又开始调用重载的operator-&gt;，知道point成为一个指针，真的指向了mem成员</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重载-&gt;可以认为是改变了从哪个对象中获取成员</p>
+</li>
+<li><p>我自己感觉只有行为类似指针的类才需要重载-&gt;，而一般的数值类不会重载-&gt;</p>
+</li>
+<li><p>-&gt;最终返回的是一个地址，之后他会继续使用-&gt;,直到用内置版本的-&gt;</p>
+</li>
+</ol>
+<h3 id="14-8函数调用运算符"><a href="#14-8函数调用运算符" class="headerlink" title="14.8函数调用运算符"></a>14.8函数调用运算符</h3><ol>
+<li><p>如果类定义了调用运算符，则该类对象称作函数对象 。因为可以调用这种对象，所以我们说这些对象的“行为像函数一样）</p>
+</li>
+<li><p>函数调用运算符必须是成员函数。一个类可以定义多个不同版本的调用运算符，相互之间应该在参数数量或类型上有所区别</p>
+</li>
+<li><p>函数对象类通常含有一些数据成员，被用于定制调用运算符中的操作</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PrintString</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">PrintString</span>(ostream&amp; o = cout,<span class="keyword">char</span> c = <span class="string">&#x27; &#x27;</span>):<span class="built_in">os</span>(o),<span class="built_in">sep</span>(c)&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">(<span class="keyword">const</span> string &amp;s)</span> <span class="keyword">const</span> </span>&#123;os&lt;&lt;s&lt;&lt;sep&#125;;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    ostream &amp;os;      <span class="comment">//将输入写入目的流</span></span><br><span class="line">    <span class="keyword">char</span> sep;         <span class="comment">//用于将不同输出隔开的字符</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数对象常常作为泛型算法的实参，例如可以用for_each算法</p>
+</li>
+<li><p>A(a)会生成一个临时对象</p>
+</li>
+<li><p>lambda是函数对象，和写一个类再生成一个临时的函数对象的写法没有区别</p>
+</li>
+<li><p>lambda表达式产生的类不含默认构造函数,赋值运算符及默认析构；他是否含有默认的拷贝/移动构造函数则通常要视捕获的数据成员而定</p>
+</li>
+<li><p>标准库定义了一组表示算数运算符，关系运算符和逻辑运算符的类，每个类分别定义一个执行命名操作的调用运算符；这些类都被定义为模板的形式，可以为其指定具体的应用类型，这里的类型即为调用运算符的形参类型。例如,plus<string>加法运算作用于string对象；</string></p>
+</li>
+<li><p>标准库函数对象在functional头文件中</p>
+</li>
+<li><p>可以用函数对象代替默认运算符</p>
+</li>
+<li><p>指针类型不能进行关系比较，会产生未定义的行为，但我们能用标准库函数对象比较大小</p>
+</li>
+<li><p>关联容器使用less<key_value>对元素进行排序，因此我们可以定义一个指针的set，或者在map中使用指针作为关键值而无需声明less</key_value></p>
+</li>
+<li><p>复习：bind是一种函数适配器，它接受一个可调用对象，生成一个新的可调用对象，生成一个新的可调用对象来”适应“原对象的参数列表</p>
+</li>
+<li><p>复习：如果一个lambda包含return以外的任何语句，则编译器假定它返回一个void，此时若想说明返回的类型不是void，就要加上位置返回类型的说明。（如果只有一个return，则它会根据return的类型，自动判断应该返回的类型</p>
+</li>
+<li><p>for_each是只读的，除非传入引用并且改变引用的对象的值，其默认返回void</p>
+</li>
+<li><p>将标准库函数和bind联合使用形成谓词从而用在泛型算法中是一种常见的用法</p>
+</li>
+<li><p>c++中可调用对象有：函数，函数指针，lambda表达式，bind创建的对象，以及重载了函数调用运算符的类（函数对象）</p>
+</li>
+<li><p>lambda有自己唯一的未命名类类型；函数及函数指针的类型由返回值类型和实参类型决定</p>
+</li>
+<li><p>两个不同类型的可调用对象能共享同一张调用形式。调用形式指明了调用返回的类型以及传递给调用的实参类型。一种调用形式对应一个函数类型，如int (int  int )</p>
+</li>
+<li><p>向一个map中加入元素的方式最简单的有两种一个是<code>map.insert(&#123;a,b&#125;)</code>一个是<code>map.insert(make_pair(a,b))</code>,只要记住加入的是一个pair就行，第一种列表会自动转化为pair，等价于<code>pair&lt;A,B&gt;(a,b)</code></p>
+</li>
+<li><p>fuction&lt;调用形式&gt; f = 可调用对象，就可以将f变为可调用对象的副本，且统一可调用对象的类型为调用形式的类型</p>
+</li>
+<li><p>尽管可调用对象的类型各不相同，我们仍然能够把左右这些类型都存储在同一个<code>function&lt;int (int,int)&gt;</code>类型中，并且进行调用</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">map&lt;string,function&lt;<span class="keyword">int</span>(<span class="keyword">int</span>,<span class="keyword">int</span>)&gt;&gt; binops = &#123;</span><br><span class="line">    &#123;<span class="string">&quot;+&quot;</span>,add&#125;,         <span class="comment">//普通函数指针</span></span><br><span class="line">    &#123;<span class="string">&quot;-&quot;</span>,minus&lt;<span class="keyword">int</span>&gt;()&#125;,<span class="comment">//标准库函数对象；</span></span><br><span class="line">    &#123;<span class="string">&quot;/&quot;</span>,<span class="built_in">divide</span>()&#125;,    <span class="comment">//函数对象；</span></span><br><span class="line">    &#123;<span class="string">&quot;*&quot;</span>,[](<span class="keyword">int</span> i,<span class="keyword">int</span> j)&#123;<span class="keyword">return</span> i*j;&#125;&#125;, <span class="comment">//未命名的lambda</span></span><br><span class="line">    &#123;<span class="string">&quot;%&quot;</span>,mod&#125;;        <span class="comment">//命名了的lambda对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>只能说bind和标准库对象是绝配</p>
+</li>
+<li><p>复习：string的find函数会返回一个size_type类型的值表示下标，如果没找到就返回std::string::npos,npos是size_type可能取得的最大值</p>
+</li>
+<li><p>复习：能用stod转换的string必须是以+-012…9开头的string，因此一般我们用s.find_first_of获取第一个可以作为开头位置的pos，再用s.substr(pos)获得可以进行转换的子串</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">map&lt;<span class="keyword">char</span>,function&lt;<span class="keyword">int</span> (<span class="keyword">int</span>,<span class="keyword">int</span>)&gt;&gt; functions&#123;&#123;<span class="string">&#x27;+&#x27;</span>,plus&lt;<span class="keyword">int</span>&gt;()&#125;,&#123;<span class="string">&#x27;-&#x27;</span>,minus&lt;<span class="keyword">int</span>&gt;()&#125;,&#123;<span class="string">&#x27;*&#x27;</span>,multiplies&lt;<span class="keyword">int</span>&gt;()&#125;,&#123;<span class="string">&#x27;/&#x27;</span>,divides&lt;<span class="keyword">int</span>&gt;()&#125;&#125;;<span class="comment">//遇见不同的符号就会调用不同的函数</span></span><br><span class="line">   string expression;</span><br><span class="line">   <span class="keyword">while</span>(cin&gt;&gt;expression)&#123;</span><br><span class="line">       <span class="keyword">auto</span> pos = expression.<span class="built_in">find_first_of</span>(<span class="string">&quot;+-*/&quot;</span>);</span><br><span class="line">       <span class="keyword">int</span> num1 = <span class="built_in">stoi</span>(expression.<span class="built_in">substr</span>(<span class="number">0</span>,pos));</span><br><span class="line">       <span class="keyword">int</span> num2 = <span class="built_in">stoi</span>(expression.<span class="built_in">substr</span>(pos+<span class="number">1</span>));</span><br><span class="line">       <span class="keyword">char</span> op = expression[pos];</span><br><span class="line">       <span class="keyword">auto</span> result = functions[op](num1,num2);</span><br><span class="line">       cout&lt;&lt;result&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="14-9重载类型转换与运算符"><a href="#14-9重载类型转换与运算符" class="headerlink" title="14.9重载类型转换与运算符"></a>14.9重载类型转换与运算符</h3><ol>
+<li>转换构造函数(只接受一个参数的非explicit构造函数)和类型转换运算符共同定义了类类型转换，这样的转换有时也被称作用户定义的类型转换（user-defined conversions）</li>
+<li>一个类型转换函数必须是类的成员函数；他不能声明返回类型，形参列表也必须为空。因为它一般不改变待转换对象的内容，所以类型转换运算符一般被定义成const成员</li>
+<li>无论类类型发生隐式转换前还是后，都可以进行内置类型转换，也就是说可以从 double转为int在转为类A，也可以从A转为int再转为double</li>
+<li>因为转换是隐式进行的，所以没有参数；因为要转换成的类型就是返回的类型，所以不需要声明返回类型。</li>
+<li>避免过度使用类型转换函数，可以设计普通的成员函数来代替</li>
+<li>一般情况下，不会定义类型转换，但是定义向bool类型转换还是比较普遍的现象</li>
+<li>为了防止莫名的类型转换运算符，C++11引入了显式的类型转换运算符，就是operator前加上explicit</li>
+<li>当表达式被用作条件，编译器会将显式的类型转换自动的应用于它</li>
+<li>向bool的类型转换通常在条件部分，这是explict也能进行隐式的转换，所以operator bool一般可以定义为explicit的</li>
+<li>两个类不要定义相同的类型转换（A可以通过A的构造函数转换B为A，也可以通过B的类型转换运算符将B转换为A);也不要在类中定义两个及两个以上转换源或者转换目标是算数类型的转换</li>
+<li>当我们使用两个用户定义的类型转换时，如果转换函数之前或之后存在标准类型转换，则标准类型转换将决定最佳匹配是到底是哪个</li>
+<li>总而言之，除了显式地向bool类型的转换之外，我们应该避免定义类型转换函数并尽可能的限制非显式构造函数</li>
+<li>在调用重载函数时，如果需要额外的标准类型转换，则该转换的级别只有当所有可行函数都请求同一个用户定义的类型转换时才有用。如果所需的用户定义的类型转换不止一个，则该调用具有二义性 </li>
+<li>简单来说，只要一个数能同时转化为两个函数都能调用的情况，就说明有二义性，只有被相同的函数调用时，转化的优先级才有意义；就是不能又可以转换为A又能转换为B，这样就会不知道调用哪个函数，从而产生二义性；如果它能确定只转换为一个用户定义的类型转换中的类型，那么优先级才有用</li>
+<li>如果我们对同一个类提供了转换目标是算数类型的类型转换，也提供了重载的运算符，则将会遇到重载运算符与内置运算符的二义性问题（类型转换为算数类型进行内置运算或者是直接调用重载运算符）</li>
+</ol>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Itk之PointSet</title>
     <url>/post/f8b294b7/</url>
     <content><![CDATA[<ol>
