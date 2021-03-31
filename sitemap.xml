@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://lmagy.github.io/post/fdd04c25/</loc>
+    
+    <lastmod>2021-03-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://lmagy.github.io/post/undefined/</loc>
     
     <lastmod>2021-03-30</lastmod>
@@ -67,7 +74,7 @@
 
   <url>
     <loc>http://lmagy.github.io/</loc>
-    <lastmod>2021-03-30</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -75,63 +82,63 @@
   
   <url>
     <loc>http://lmagy.github.io/tags/deep-learning/</loc>
-    <lastmod>2021-03-30</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lmagy.github.io/tags/CV/</loc>
-    <lastmod>2021-03-30</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lmagy.github.io/tags/python/</loc>
-    <lastmod>2021-03-30</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lmagy.github.io/tags/survey/</loc>
-    <lastmod>2021-03-30</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lmagy.github.io/tags/%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2021-03-30</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lmagy.github.io/tags/hexo/</loc>
-    <lastmod>2021-03-30</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lmagy.github.io/tags/C/</loc>
-    <lastmod>2021-03-30</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lmagy.github.io/tags/Itk/</loc>
-    <lastmod>2021-03-30</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lmagy.github.io/tags/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</loc>
-    <lastmod>2021-03-30</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -140,21 +147,21 @@
   
   <url>
     <loc>http://lmagy.github.io/categories/HPE/</loc>
-    <lastmod>2021-03-30</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lmagy.github.io/categories/web%E5%89%8D%E7%AB%AF/</loc>
-    <lastmod>2021-03-30</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://lmagy.github.io/categories/C/</loc>
-    <lastmod>2021-03-30</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
